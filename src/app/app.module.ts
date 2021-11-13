@@ -17,6 +17,10 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthHttpInterceptor } from '@auth0/auth0-angular';
+import { DatabaseApiComponent } from './pages/database-api/database-api.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,17 +35,28 @@ import { ProfileComponent } from './pages/profile/profile.component';
     NavBarComponent,
     MainNavComponent,
     LoadingComponent,
-    ProfileComponent
+    ProfileComponent,
+    DatabaseApiComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AuthModule.forRoot({
       ...env.auth,
+      httpInterceptor: {
+        allowedList: [`${env.dev.serverUrl}/api/user`],
+      },
     }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

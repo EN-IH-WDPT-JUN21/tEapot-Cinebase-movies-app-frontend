@@ -1,3 +1,4 @@
+import { DatabaseApiComponent } from './pages/database-api/database-api.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileComponent } from 'src/app/pages/profile/profile.component';
@@ -10,6 +11,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'app-database-api',
+    component: DatabaseApiComponent,
     canActivate: [AuthGuard],
   }
 

@@ -10,6 +10,11 @@ export const environment = {
     domain: packageInfo.domain,
     clientId: packageInfo.clientId,
     redirectUri: window.location.origin,
+    audience: packageInfo.audience,
+    
+  },
+  dev: {
+    serverUrl: packageInfo.serverUrl
   },
 };
 
