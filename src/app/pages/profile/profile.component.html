@@ -2,14 +2,21 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div *ngIf="auth.user$ | async as user">
+<div *ngIf="auth.user$ | async as user" (onload)="getUserDetailsFromDB()">
 <div class="container-fluid">
   <div class="row">
     <div class="fb-profile">
         <img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
-        <img align="left" class="fb-image-profile thumbnail" [src]="user.picture" alt="Profile image example"/>
+
+        <button (click)="test()">test buttn</button>
+        <div class="image-container">
+        <img align="left" [src]="url ? url : user.picture" class=""> <br/>
+        <input type='file' (change)="onSelectFile($event)" class="select-profile-picture">
+        <span class="message">Tap here to select your picture</span>
+        </div>
+
         <div class="fb-profile-text">
-            <h1>{{user.nickname}}</h1>
+            <h1>{{username}}</h1>
             
         </div>
     </div>
@@ -30,6 +37,7 @@
             <div class="tab-pane active" id="tab_default_1">
               here will be user bio
               {{user.bio}}
+              
               <div class="row" *ngIf="profileJson">
                 <pre class="col-12 text-light bg-dark p-4">{{ profileJson }}</pre>
               </div>
@@ -71,5 +79,28 @@
     </div>
 </div>
   </div>
+
 </div>
 </div>
+
+
+
+  Get Public Message
+<!-- 
+TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+
+
+<div>
+  <input type="file" (change)="onFileChanged($event)">
+
+  <img [src]="imgURL" height="200" *ngIf="imgURL">
+</div>
+
+<input type="button" (click)="onUpload()" value="upload">
+
+<hr />
+
+Received Image:
+
+{{ receivedImageData['pic'] | json}}
+<img [src]="convertedImage" > -->

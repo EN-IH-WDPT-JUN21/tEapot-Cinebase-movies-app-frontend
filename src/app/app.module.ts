@@ -46,7 +46,7 @@ import { HttpClientModule } from '@angular/common/http';
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {
-        allowedList: [`${env.dev.serverUrl}/api/user`],
+        allowedList: [`${env.dev.serverUrl}/api**`],
       },
     }),
   ],
