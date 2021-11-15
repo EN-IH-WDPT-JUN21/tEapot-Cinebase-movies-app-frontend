@@ -1,4 +1,4 @@
-import { Media } from './../models/media.models';
+import { CompleteMedia } from '../models/complete-media.models';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -9,9 +9,11 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 export class MediaListItemComponent implements OnInit {
 
   @Input()
-  media!: Media;
+  media!: CompleteMedia;
 
   @Output() mediaRemoved: EventEmitter<number> = new EventEmitter();
+
+  @Output() mediaAdded: EventEmitter<number> = new EventEmitter();
 
   @Input() position!: number;
 
@@ -23,6 +25,10 @@ export class MediaListItemComponent implements OnInit {
 
   removeMedia(position: number): void {
     this.mediaRemoved.emit(position);
+  }
+
+  addMedia(position: number): void {
+    this.mediaAdded.emit(position);
   }
 
 }

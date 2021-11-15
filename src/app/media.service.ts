@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class MediaListService {
+export class MediaService {
 
   private readonly baseUrl = 'http://localhost:8100/api/playlist'
 
@@ -33,8 +33,8 @@ export class MediaListService {
     this.http.patch<void>(`${this.baseUrl}/${id}`, media);
   }
 
-  deleteMovie(id: number, media: SimplifiedMedia): void {
-    this.http.delete<void>(`${this.baseUrl}/delete${id}`, media);
+  deleteMovie(playlistId: number, imdbId: number): void {
+    this.http.delete<void>(`${this.baseUrl}/delete?playlistId=${playlistId}&imdbId=${imdbId}`);
   }
 
   deletePlaylist(id: number): void {

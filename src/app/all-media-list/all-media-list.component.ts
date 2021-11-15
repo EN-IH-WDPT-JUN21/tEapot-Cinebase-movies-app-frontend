@@ -1,3 +1,5 @@
+import { Playlist } from './../models/playlist.models';
+import { MediaService } from './../media.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllMediaListComponent implements OnInit {
 
-  constructor() { }
+  playlistList: Playlist[] = [];
+
+  constructor( private mediaService: MediaService) { }
 
   ngOnInit(): void {
+    this.updateList();
+  }
+
+  updateList() {
+    this.mediaService.getMediaLists().subscribe(
+      result => {
+        this.playlistList = result
+      }
+    )
+  }
+
+  removePlaylist(playlistPosition: number): void {
+    this.playlistList.slice(playlistPosition, 1);
+
+  }
+
+  addPlaylist(userId:number, name: string): void {
+    let playlist: Playlist = {
+      id: 0,
+      userId: userId,
+      name: name,
+      movies: []
+    };
+    this.mediaService.createPlaylist(playlist);
+
+    this.updateList();
   }
 
 }

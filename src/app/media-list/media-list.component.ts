@@ -1,6 +1,8 @@
-import { MediaListService } from './../media-list.service';
-import { Component, OnInit } from '@angular/core';
-import { Media } from '../models/media.models';
+import { SimplifiedMedia } from './../models/simplified-media.models';
+import { CompleteMedia } from './../models/complete-media.models';
+
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { MediaService } from '../media.service';
 
 @Component({
   selector: 'app-media-list',
@@ -9,16 +11,45 @@ import { Media } from '../models/media.models';
 })
 export class MediaListComponent implements OnInit {
 
-  mediaList: Media[];
+  @Input()
+  mediaList!: SimplifiedMedia[];
+ 
+  @Output() playlistRemoved: EventEmitter<number> = new EventEmitter();
 
-  constructor(private service: MediaListService) { }
+  @Output() playlistAdded: EventEmitter<number> = new EventEmitter();
+
+  @Input()
+  playlistPosition!: number;
+
+  completeMediaList: CompleteMedia[] = [];
+
+  constructor(private service: MediaService) { }
 
   ngOnInit(): void {
-    this.service.getMovieList().subscribe(
-      result => {
-        this.mediaList = result
-      }
-    )
+
   }
 
+  removePlaylist(playlistPosition: number): void {
+    this.playlistRemoved.emit(playlistPosition);
+  }
+
+  addPlaylist(playlistPosition: number): void {
+    this.playlistAdded.emit(playlistPosition);
+  }
+
+  removeMedia(mediaPosition: number): void {
+    this.mediaList.splice(mediaPosition, 1);
+    this.completeMediaList.splice(mediaPosition, 1);
+  }
+
+  addMedia(media: CompleteMedia) {
+    this.mediaList.push(
+      {
+        imdbId: media["imdbId"],
+        title: media["title"]
+      }
+    )
+
+    this.completeMediaList.push(media);
+  }
 }
