@@ -1,0 +1,6 @@
+{
+    "domain": "dev-2rwayylz.us.auth0.com",
+    "clientId": "nV7NlXSG4PSdqycIJPyBsX2PwCRJxhxa",
+    "audience": "https://cinebase.movies",
+    "serverUrl": "http://localhost:8000"
+  }
