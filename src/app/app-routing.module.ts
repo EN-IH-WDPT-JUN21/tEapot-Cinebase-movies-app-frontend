@@ -1,3 +1,4 @@
+import { HomeComponent } from './home/home.component';
 import { DatabaseApiComponent } from './pages/database-api/database-api.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -8,6 +9,10 @@ import { AuthGuard } from '@auth0/auth0-angular';
 
 const routes: Routes = [
 
+  {
+    path: '',
+    component: HomeComponent
+  },
   {
     path: 'profile',
     component: ProfileComponent,

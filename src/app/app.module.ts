@@ -21,6 +21,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { DatabaseApiComponent } from './pages/database-api/database-api.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     MainNavComponent,
     LoadingComponent,
     ProfileComponent,
-    DatabaseApiComponent
+    DatabaseApiComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
