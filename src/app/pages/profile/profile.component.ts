@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
     this.name = 'Unregistered User';
     this.email = "";
     this.username = '';
-    this.userDetails= new UserDetails(0, "", "", "", "");
+    this.userDetails= new UserDetails(0, "", "", "");
   }
 
   ngOnInit(): void {
@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit {
         localStorage.setItem('profile', JSON.stringify(profile, null, 2));
         this.userService.getUserDetails(this.restoredSession.nickname).subscribe(
           (data) => {
-            const databaseResponse=new UserDetails(data.id, data.email, data.username, data.name, data.image);
+            const databaseResponse=new UserDetails(data.id, data.email, data.username, data.image);
             this.userDetails = databaseResponse;
             console.log("user_details test api " + this.userDetails.email);
          });
@@ -83,7 +83,7 @@ export class ProfileComponent implements OnInit {
     const uploadData = new FormData();
     uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
     this.userDetails.image=this.selectedFile;
-    this.userService.updateUserDetails(this.username, this.userDetails)
+    this.userService.updateUserDetails(this.email, this.userDetails)
     .subscribe(
                  res => {console.log(res);
                          this.receivedImageData = res;
@@ -91,6 +91,7 @@ export class ProfileComponent implements OnInit {
                          this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data; },
                  err => console.log('Error Occured duringng saving: ' + err)
               );
+              
    }
 
 
@@ -105,8 +106,9 @@ export class ProfileComponent implements OnInit {
       }
       const uploadData = new FormData();
       uploadData.append('myFile', this.selectedFile);
+      this.userDetails=this.restoredSession;
       this.userDetails.image=this.selectedFile;
-      this.userService.updateUserDetails(this.username, this.userDetails)
+      this.userService.updateUserDetails(this.email, this.userDetails)
       .subscribe(
                    res => {console.log(res);
                            this.receivedImageData = res;
@@ -122,21 +124,27 @@ export class ProfileComponent implements OnInit {
     this.url = null;
     }
     public test(){
-      this.userService.updateUserDetails(this.username, this.userDetails).subscribe();
+      this.userService.getUserDetails(this.email).subscribe(
+        (data) => {
+          const databaseResponse: UserDetails = data;
+          this.email= databaseResponse.email;
+          console.log("user_details " + this.email);
+       }
+      );
     }
 
     public getUserDetailsFromDB(){
       console.log("object: " + this.restoredSession.nickname);
      return this.userService.getUserDetails(this.restoredSession.nickname).subscribe(
        (data) => {
-         const databaseResponse=new UserDetails(data.id, data.email, data.username, data.name, data.image);
+         const databaseResponse=new UserDetails(data.id, data.email, data.username, data.image);
          this.userDetails = databaseResponse;
          console.log("user_details " + this.userDetails.email);
       });
        }
 
-    public updateUserDetails(username: string, userDetails: UserDetails){
-      return this.userService.updateUserDetails(username, userDetails).subscribe(
+    public updateUserDetails(email: string, userDetails: UserDetails){
+      return this.userService.updateUserDetails(email, userDetails).subscribe(
         (data) => {
           const databaseResponse: UserDetails = data;
        });
