@@ -17,10 +17,11 @@ export class MovieItemComponent implements OnInit {
   @Input() 
   movie! : Movie;
 
-
   open() {
-    const modalRef = this.modalService.open(MovieDetailComponent);
-    modalRef.componentInstance.name='Halo';
+    const modalRef = this.modalService.open(MovieDetailComponent, {size: 'lg'});
+  
+    modalRef.componentInstance.movieId=this.movie.id;
+
   }
 
 }

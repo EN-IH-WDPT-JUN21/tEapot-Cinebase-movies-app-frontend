@@ -5,3 +5,18 @@ img{
     width:60px;
 
 }
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color:black;
+}
+
+a:hover {
+    text-decoration: none;
+    color: darkgray
+}
+
+aColor:hover {
+    color:darkgray;
+}

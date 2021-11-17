@@ -1,12 +1,40 @@
 <div class="modal-header">
-    <h4 class="modal-title">{{movie.title}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
+
+
+      <h4 class="modal-title">{{movie.title}}</h4>
+      <span class="badge rounded-pill bg-warning text-dark">{{movie.runtimeStr}}
+      </span>
+
+
+  <button type="button" class="btn-close btn-sm" (click)="activeModal.dismiss('Cross click')">
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+
+    <div class="col-md-auto">
+      <img [src]="movie.image">
+    </div>
+    <div class="col">
+      <div class="d-flex w-100 justify-content-between">
+        <!-- <h5 class="mb-1 fw-bold"><a [routerLink]="['/movies', movie.id]">{{movie.title}}</a></h5> -->
+        <h5 class="mb-1 fw-bold">{{movie.fullTitle}}</h5> <!-- Remove before finished project -->
+      </div>
+      {{movie.plot}}
+      <div><small *ngIf="movie.year"><span class="movieParam">Type:</span> {{movie.type}}</small></div>
+      <div><small *ngIf="movie.year"><span class="movieParam">Genres:</span> {{movie.genres}}</small></div>
+      <div><small *ngIf="movie.year"><span class="movieParam">ReleaseDate:</span> {{movie.releaseDate}}</small></div>
+      <div><small *ngIf="movie.year"><span class="movieParam">Directed</span> by {{movie.directors}}</small></div>
+      <div><small *ngIf="movie.year"><span class="movieParam">Written</span> by {{movie.writers}}</small></div>
+      <div><small *ngIf="movie.year"><span class="movieParam">Stars:</span> {{movie.stars}}</small></div>
+      <div><small *ngIf="movie.year"><span class="movieParam">Awards:</span> {{movie.awards}}</small></div>
+      <div><small *ngIf="movie.year"><a target="_blank" href="https://www.imdb.com/title/{{movie.id}}"><span>>>> Find more on IMDd</span></a></small></div>
+      
+
+    </div>
   </div>
-  <div class="modal-body">
-    
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-danger">ADD TO PLAYLIST</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>
