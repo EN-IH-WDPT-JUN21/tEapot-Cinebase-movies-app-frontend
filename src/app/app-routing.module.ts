@@ -1,3 +1,6 @@
+import { MovieModalComponent } from './components/movie-modal/movie-modal.component';
+import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
+import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { DatabaseApiComponent } from './pages/database-api/database-api.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -17,7 +20,15 @@ const routes: Routes = [
     path: 'app-database-api',
     component: DatabaseApiComponent,
     canActivate: [AuthGuard],
-  }
+  },
+  {
+    path: 'movies',
+    component: MovieListComponent,
+  },
+  {
+    path: 'movies/:movieId',
+    component: MovieModalComponent,
+  },
 
 ];
 
