@@ -27,14 +27,8 @@ export default class UserDetails {
     public set username(value: string) {
         this._username = value;
     }
-    public get id(): number {
-        return this._id;
-    }
-    public set id(value: number) {
-        this._id = value;
-    }
 
-    constructor(private _id: number, private _username: string, private _email: string, private _bio: string) { }
+    constructor(private _username: string, private _email: string, private _bio: string) { }
 
     
 }

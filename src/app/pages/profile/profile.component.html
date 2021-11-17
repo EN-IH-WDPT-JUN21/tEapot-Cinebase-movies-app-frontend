@@ -8,7 +8,8 @@
     <div class="fb-profile">
         <img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
 
-        <button (click)="test()">test buttn</button>
+        <input type="text" placeholder="Enter your bio" >
+        <button (click)="test(email)">test fetch user details by email</button>
         <div class="image-container">
         <img align="left" [src]="url ? url : user.picture" class=""> <br/>
         <input type='file' (change)="onSelectFile($event)" class="select-profile-picture">

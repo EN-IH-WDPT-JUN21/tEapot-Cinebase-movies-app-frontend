@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
   name = 'Angular 4';
   email!: string;
   username!: string;
+  bio!: string;
   id!: number;
   url!: any;
   user!: AuthService["user$"];
@@ -38,7 +39,7 @@ export class ProfileComponent implements OnInit {
     this.name = 'Unregistered User';
     this.email = "";
     this.username = '';
-    this.userDetails= new UserDetails(0, "", "", "");
+    this.userDetails= new UserDetails("", "", "");
   }
 
   ngOnInit(): void {
@@ -46,22 +47,17 @@ export class ProfileComponent implements OnInit {
       (profile) => {
         var test= JSON.stringify(profile, null, 2);
         this.profileJson = JSON.stringify(profile, null, 2);
-
-        localStorage.setItem('profile', JSON.stringify(profile, null, 2));
-        this.userService.getUserDetails(this.restoredSession.nickname).subscribe(
-          (data) => {
-            const databaseResponse=new UserDetails(data.id, data.email, data.username, data.image);
-            this.userDetails = databaseResponse;
-            console.log("user_details test api " + this.userDetails.email);
-         });
-    
+        localStorage.setItem('profile', JSON.stringify(profile, null, 2));         
       }
     );
     
     this.restoredSession = JSON.parse(localStorage.getItem('profile')!);
     this.username = this.restoredSession.nickname;
     this.email = this.restoredSession.email;
-    console.log("test of " + this.restoredSession.nickname);
+    this.userService.getUserDetails(this.restoredSession.email).subscribe(
+      (data) => {
+        const databaseResponse=new UserDetails( data.email, data.username, data.bio);
+     });
   }
 
 
@@ -120,28 +116,34 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-   public delete(){
-    this.url = null;
-    }
-    public test(){
-      this.userService.getUserDetails(this.email).subscribe(
-        (data) => {
-          const databaseResponse: UserDetails = data;
-          this.email= databaseResponse.email;
-          console.log("user_details " + this.email);
+
+
+    public test(email: string){
+      console.log("input value for email: " + email)
+      this.userService.getUserDetails(email).subscribe(
+        (data2: UserDetails) => {
+          const databaseResponse: UserDetails = data2;
+          console.log("response bio from request: "+databaseResponse.bio);
+       }
+      );
+      let userDetailsRandom: UserDetails = new UserDetails("randomUser", "random mail", "randomBio");
+      this.userService.postUserDetails(userDetailsRandom).subscribe(
+        (data2: UserDetails) => {
+         let databaseResponse: UserDetails = data2;
+          console.log("response for random bio from request: "+databaseResponse.bio);
        }
       );
     }
 
     public getUserDetailsFromDB(){
-      console.log("object: " + this.restoredSession.nickname);
      return this.userService.getUserDetails(this.restoredSession.nickname).subscribe(
        (data) => {
-         const databaseResponse=new UserDetails(data.id, data.email, data.username, data.image);
+         const databaseResponse=new UserDetails( data.email, data.username, data.bio);
          this.userDetails = databaseResponse;
          console.log("user_details " + this.userDetails.email);
       });
        }
+
 
     public updateUserDetails(email: string, userDetails: UserDetails){
       return this.userService.updateUserDetails(email, userDetails).subscribe(
