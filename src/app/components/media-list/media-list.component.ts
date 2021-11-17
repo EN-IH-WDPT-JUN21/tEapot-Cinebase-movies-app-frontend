@@ -1,9 +1,8 @@
-import { Playlist } from './../models/playlist.models';
-import { DataTransferService } from './../data-transfer.service';
-import { SimplifiedMedia } from './../models/simplified-media.models';
-import { CompleteMedia } from './../models/complete-media.models';
+import { Playlist } from '../../models/playlist.models';
+import { DataTransferService } from '../../services/data-transfer/data-transfer.service';
+import { CompleteMedia } from '../../models/complete-media.models';
 
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

@@ -1,6 +1,6 @@
-import { DataTransferService } from './../data-transfer.service';
-import { Playlist } from './../models/playlist.models';
-import { MediaService } from './../media.service';
+import { DataTransferService } from '../../services/data-transfer/data-transfer.service';
+import { Playlist } from '../../models/playlist.models';
+import { MediaService } from '../../services/media/media.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 

@@ -1,7 +1,7 @@
-import { MediaListComponent } from './media-list/media-list.component';
+import { MediaListComponent } from './components/media-list/media-list.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AllMediaListComponent } from './all-media-list/all-media-list.component';
+import { AllMediaListComponent } from './components/all-media-list/all-media-list.component';
 
 const routes: Routes = [
   {

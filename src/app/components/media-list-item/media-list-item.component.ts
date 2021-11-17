@@ -1,4 +1,4 @@
-import { CompleteMedia } from '../models/complete-media.models';
+import { CompleteMedia } from '../../models/complete-media.models';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({

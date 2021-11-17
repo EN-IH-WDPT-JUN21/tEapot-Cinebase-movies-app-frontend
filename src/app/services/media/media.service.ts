@@ -1,5 +1,5 @@
-import { SimplifiedMedia } from './models/simplified-media.models';
-import { Playlist } from './models/playlist.models';
+import { SimplifiedMedia } from '../../models/simplified-media.models';
+import { Playlist } from '../../models/playlist.models';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';

@@ -1,4 +1,4 @@
-import { Playlist } from './models/playlist.models';
+import { Playlist } from '../../models/playlist.models';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
