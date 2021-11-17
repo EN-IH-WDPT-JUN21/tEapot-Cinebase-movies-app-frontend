@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +25,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { DatabaseApiComponent } from './pages/database-api/database-api.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MovieModalComponent } from './components/movie-modal/movie-modal.component';
 
 @NgModule({
   declarations: [
@@ -42,10 +45,12 @@ import { HttpClientModule } from '@angular/common/http';
     MainNavComponent,
     LoadingComponent,
     ProfileComponent,
-    DatabaseApiComponent
+    DatabaseApiComponent,
+    MovieModalComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -55,6 +60,7 @@ import { HttpClientModule } from '@angular/common/http';
         allowedList: [`${env.dev.serverUrl}/api**`],
       },
     }),
+    NgbModule,
   ],
   providers: [
     {

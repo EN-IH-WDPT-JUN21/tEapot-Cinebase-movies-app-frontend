@@ -1,1 +1,39 @@
-<p>movie-list works!</p>
+<div class="container-sm">
+    <div class="input-group">
+        <div class="input-group-append">
+            <span class="input-group-text">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+            </span>
+        </div>
+        <input type="text" [(ngModel)]="searchString" class="form-control" placeholder="Search movie"
+            aria-label="Search movie" aria-describedby="basic-addon2" (keyup.enter)="filterResults()">
+        <div class="input-group-append">
+            <button class="btn btn-light" width="25" height="25" fill="currentColor" viewBox="0 0 16 16"
+                (click)="filterResults()">Filter</button>
+        </div>
+    </div>
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked
+            (click)="enableFilms()" (keyup.enter)="filterResults()">
+        <label class="btn btn-outline-primary btn-sm" for="btnradio1">Films</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
+            (click)="enableTvSeries()" (keyup.enter)="filterResults()">
+        <label class="btn btn-outline-primary btn-sm" for="btnradio2">TV Series</label>
+
+    </div><br>
+    <div *ngIf="loading else loaded" style="text-align: center;">
+        <div class="spinner-border text-secondary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only"><img src="./../../../assets/img/logo_bg.png" width=42px></span>
+        </div>
+    </div>
+
+    <ng-template #loaded>
+        <ul class="list-group list-group-flush">
+            <app-movie-item *ngFor="let movie of listOfMovies" [movie]="movie"></app-movie-item>
+        </ul>
+    </ng-template>
+</div>
