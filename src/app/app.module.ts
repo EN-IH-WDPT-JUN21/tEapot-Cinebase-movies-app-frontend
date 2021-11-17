@@ -22,6 +22,7 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { DatabaseApiComponent } from './pages/database-api/database-api.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { HomeComponent } from './home/home.component';
     LoadingComponent,
     ProfileComponent,
     DatabaseApiComponent,
-    HomeComponent
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

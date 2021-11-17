@@ -6,6 +6,7 @@ import { ProfileComponent } from 'src/app/pages/profile/profile.component';
 
 
 import { AuthGuard } from '@auth0/auth0-angular';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
 
@@ -22,6 +23,10 @@ const routes: Routes = [
     path: 'app-database-api',
     component: DatabaseApiComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
   }
 
 ];

@@ -1,17 +1,13 @@
 p {
-    font-family: Lato;
+    font-family: 'Roboto';
+    color: #354855;
   }
   
-  .image-container {
-    position: relative;
-    display: inline-block;
-    text-align: center;
-  }
+
   
   img {
     height: 200px;
     width: 200px;
-    border: 5px solid #000;
     border-radius: 50%;
   }
   
@@ -24,6 +20,7 @@ p {
     width: 100%;
     height: 100%;
     cursor: pointer;
+  
   }
   
   .message {
@@ -34,9 +31,51 @@ p {
     transform: translate(-50%, 100%);
     transition: all 1s;
     opacity: 0;
+    background: rgba(229, 229, 229, 0.83);
   }
   
   .image-container:hover .message {
     transform: translate(-50%, -50%);
     opacity: 1;
   }
+
+  .container-fluid, .container{
+    background:rgba(229, 229, 229, 0.83);
+    padding: 20px;
+    max-width: 1140px;
+   
+}
+.footer {
+  position: sticky;
+  position: -webkit-sticky;
+  left: 0;
+  bottom: 0;
+}
+
+.fb-profile{
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+}
+
+.fb-profile-text{
+  float: right;
+  margin-left: 20px;
+}
+
+.image-container {
+  position: relative;
+  text-align: center;
+  float: left;
+  margin-right: 20px;
+  margin-left: auto;
+}
+
+h1{
+  font-family: Righteous;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 45px;
+  color: #553542;
+}
