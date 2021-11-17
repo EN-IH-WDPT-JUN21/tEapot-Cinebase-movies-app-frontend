@@ -1,5 +1,4 @@
 export interface CompleteMedia {
-    id: number,
     imdbId: string,
     title: string,
     fullTitle: string,

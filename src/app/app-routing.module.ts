@@ -5,13 +5,17 @@ import { AllMediaListComponent } from './all-media-list/all-media-list.component
 
 const routes: Routes = [
   {
-    path: 'playlists/:userId',
+    path: 'playlists',
     component: AllMediaListComponent
   },
   {
     path: 'playlist/:playlistId',
     component: MediaListComponent
-  }
+  },
+  /*{
+    path: 'playlist/public/:playlistId',
+    component: Add Here Component For Public Playlists
+  }*/
 ];
 
 @NgModule({
