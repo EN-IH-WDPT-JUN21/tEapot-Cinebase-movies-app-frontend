@@ -1,28 +1,20 @@
-import { Movie } from 'src/app/models/movie.model';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MoviesService } from 'src/app/service/movie-service/movies.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieDetail } from 'src/app/models/movie-detail.model';
-import movieDetailed from './../movie-list/mock-files/testFilmsItem-detail.json'
-import { Subject } from 'rxjs';
-
+import testFilmsItemDetail from './../movie-list/mock-files/testFilmsItemDetail.json';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.css']
 })
-export class MovieDetailComponent implements OnInit {
+export class MovieDetailComponent  {
 
 
+  @Input() movieId : any;
 
-  @Input() movie: MovieDetail;
-  destroy = new Subject
-
-  getMovieId(movieId: string) {
-    return movieId;
-
-  }
+  movie! : MovieDetail;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private movieService: MoviesService,public activeModal: NgbActiveModal) {
     this.movie = {
@@ -48,47 +40,67 @@ export class MovieDetailComponent implements OnInit {
         seasons: []
       }
     }
+
+    const id: string = activatedRoute.snapshot.params.id;
+    console.log(id)
   }
 
   ngOnInit(): void {
 
-    const movieId: string = this.activatedRoute.snapshot.params['movieId'];
-    const movieId2: string = this.activatedRoute.snapshot.params['id'];
-    const movieId4: string | null = this.activatedRoute.snapshot.paramMap.get('id')
-    const movieId3: string | null = this.activatedRoute.snapshot.paramMap.get('movieId')
-    console.log(movieId)
-    console.log(movieId2)
-    console.log(movieId3)
-    console.log(movieId4)
-    
-    // this.movieService.getMovieById(movieId).subscribe(
-    //   result => {
-    //     this.movie = {
-    //       id: result.id,
-    //       title: result.title,
-    //       fullTitle: movieDetailed.fullTitle,
-    //       type: movieDetailed.type,
-    //       year: movieDetailed.year,
-    //       image: movieDetailed.image,
-    //       releaseDate: movieDetailed.releaseDate,
-    //       runtimeMins: movieDetailed.runtimeMins,
-    //       runtimeStr: movieDetailed.runtimeStr,
-    //       plot: movieDetailed.plot,
-    //       awards: movieDetailed.awards,
-    //       directors: movieDetailed.directors,
-    //       writers: movieDetailed.writers,
-    //       stars: movieDetailed.stars,
-    //       genres: movieDetailed.genres,
-    //       imdbRating: movieDetailed.imDbRating,
-    //       tvSeriesInfo: {
-    //         yearEnd: 123,
-    //         creators: '',
-    //         seasons: []
-    //       }
-    //     }
+    // console.log(this.movieId)
 
+    // this.movie = {
+    //   id: testFilmsItemDetail.id,
+    //   title: testFilmsItemDetail.title,
+    //   fullTitle: testFilmsItemDetail.fullTitle,
+    //   type: testFilmsItemDetail.type,
+    //   year: testFilmsItemDetail.year,
+    //   image: testFilmsItemDetail.image,
+    //   releaseDate: testFilmsItemDetail.releaseDate,
+    //   runtimeMins: testFilmsItemDetail.runtimeMins,
+    //   runtimeStr: testFilmsItemDetail.runtimeStr,
+    //   plot: testFilmsItemDetail.plot,
+    //   awards: testFilmsItemDetail.awards,
+    //   directors: testFilmsItemDetail.directors,
+    //   writers: testFilmsItemDetail.writers,
+    //   stars: testFilmsItemDetail.stars,
+    //   genres: testFilmsItemDetail.genres,
+    //   imdbRating: testFilmsItemDetail.imDbRating,
+    //   tvSeriesInfo: {
+    //     yearEnd: 123,
+    //     creators: '',
+    //     seasons: []
     //   }
-    // )
+    // }
+    
+    this.movieService.getMovieById(this.movieId).subscribe(
+      result => {
+        this.movie = {
+          id: result.id,
+          title: result.title,
+          fullTitle: result.fullTitle,
+          type: result.type,
+          year: result.year,
+          image: result.image,
+          releaseDate: result.releaseDate,
+          runtimeMins: result.runtimeMins,
+          runtimeStr: result.runtimeStr,
+          plot: result.plot,
+          awards: result.awards,
+          directors: result.directors,
+          writers: result.writers,
+          stars: result.stars,
+          genres: result.genres,
+          imdbRating: result.imDbRating,
+          tvSeriesInfo: {
+            yearEnd: 123,
+            creators: '',
+            seasons: []
+          }
+        }
+
+      }
+    )
   }
 }
 

@@ -26,7 +26,6 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { DatabaseApiComponent } from './pages/database-api/database-api.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MovieModalComponent } from './components/movie-modal/movie-modal.component';
 
 @NgModule({
   declarations: [
@@ -45,8 +44,7 @@ import { MovieModalComponent } from './components/movie-modal/movie-modal.compon
     MainNavComponent,
     LoadingComponent,
     ProfileComponent,
-    DatabaseApiComponent,
-    MovieModalComponent
+    DatabaseApiComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +59,9 @@ import { MovieModalComponent } from './components/movie-modal/movie-modal.compon
       },
     }),
     NgbModule,
+  ],
+  entryComponents: [
+    MovieDetailComponent
   ],
   providers: [
     {

@@ -26,33 +26,30 @@ export class MovieListComponent implements OnInit {
     this.getFilms();
   }
 
-  async getFilms(): Promise<void> {
+   getFilms():void {                      // Remove before submit the project 
       this.movieService.getFilms().subscribe(
-        async result => {
+         result => {
           console.log(result.items);
-          await this.delay(1000);
           this.listOfMovies = result.items;
           this.loading = false;
         }
       )
   }
 
-  async getTvSeries(): Promise<void> {
+   getTvSeries(): void {                // Remove before submit the project 
       this.movieService.getTvSeries().subscribe(
-        async result => {
+         result => {
           console.log(result.items);
-          await this.delay(1000);
           this.listOfMovies = result.items;
           this.loading = false;
         }
       )
   }
 
-  async filterFilms(): Promise<void> {
+  filterFilms(): void {
       this.movieService.searchFilmsByText(this.searchString).subscribe(
-        async result => {
+        result => {
           console.log(result);
-          await this.delay(500);
           this.listOfMovies = result.results;
           this.loading = false;
         }
@@ -60,11 +57,11 @@ export class MovieListComponent implements OnInit {
     
   }
 
-  async filterTvSeries(): Promise<void> {
+   filterTvSeries(): void {
     this.movieService.searchSeriesByText(this.searchString).subscribe(
-      async result => {
+       result => {
         console.log(result);
-        await this.delay(500);
+         this.delay(500);
         this.listOfMovies = result.results;
         this.loading = false;
       }
