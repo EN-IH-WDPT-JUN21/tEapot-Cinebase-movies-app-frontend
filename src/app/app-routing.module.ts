@@ -23,19 +23,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'app-database-api',
-    component: DatabaseApiComponent,
-    canActivate: [AuthGuard],
-  },
+    path: 'movies',
+    component: MovieListComponent,
+   },
   {
 
     path: '**',
     component: PageNotFoundComponent,
-   },
-  {
-    path: 'movies',
-    component: MovieListComponent,
    }
+ 
   
 
 ];
