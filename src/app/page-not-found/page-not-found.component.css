@@ -1,0 +1,50 @@
+.container-none{
+    position: absolute;
+    width: auto;
+    height: 200px;
+    left: 70px;
+    margin: 0;
+   position: absolute;
+   top: 50%;
+   -ms-transform: translateY(50%);
+   transform: translateY(-50%);
+    
+    padding: 20px;
+   
+    }
+
+.nav-link{
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 24px;
+    text-decoration-line:underline;
+    color: #553542;
+    margin-left: -14px;
+}
+
+h3{
+font-family: Righteous;
+font-style: normal;
+font-weight: normal;
+font-size: 36px;
+line-height: 45px;
+
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #354855;
+}
+
+h4{
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 24px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #354855;
+}

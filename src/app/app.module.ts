@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { MovieItemComponent } from './components/movie-item/movie-item.component';
+import { MovieListComponent } from './components/movie-list/movie-list.component';
+import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
 import { LoginButtonComponent } from './components/login-button/login-button.component';
@@ -22,12 +26,18 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { DatabaseApiComponent } from './pages/database-api/database-api.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     HeaderComponent,
+    MovieItemComponent,
+    MovieListComponent,
+    MovieDetailComponent,
     LoginButtonComponent,
     SignupButtonComponent,
     LogoutButtonComponent,
@@ -38,10 +48,12 @@ import { HomeComponent } from './home/home.component';
     LoadingComponent,
     ProfileComponent,
     DatabaseApiComponent,
-    HomeComponent
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -51,6 +63,10 @@ import { HomeComponent } from './home/home.component';
         allowedList: [`${env.dev.serverUrl}/api*`],
       },
     }),
+    NgbModule,
+  ],
+  entryComponents: [
+    MovieDetailComponent
   ],
   providers: [
     {

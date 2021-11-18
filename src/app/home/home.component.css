@@ -1,4 +1,4 @@
-.container{
+.container-home{
     position: absolute;
     width: auto;
     height: 200px;
@@ -10,6 +10,7 @@
    transform: translateY(-50%);
     
     background: rgba(229, 229, 229, 0.83);
+    padding: 20px;
    
     }
 
@@ -39,5 +40,6 @@ text-align: center;
 
 color: #354855;
 }
+
 
 
