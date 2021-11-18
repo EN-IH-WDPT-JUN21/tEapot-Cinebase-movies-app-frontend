@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { MediaListComponent } from './components/media-list/media-list.component';
 import { MediaListItemComponent } from './components/media-list-item/media-list-item.component';
 import { AllMediaListComponent } from './components/all-media-list/all-media-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AllMediaListComponent } from './components/all-media-list/all-media-lis
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
