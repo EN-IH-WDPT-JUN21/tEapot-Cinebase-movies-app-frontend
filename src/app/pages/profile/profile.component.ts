@@ -25,14 +25,6 @@ export class ProfileComponent implements OnInit {
   user!: AuthService["user$"];
   userDetails!: UserDetails;
 
-
-  //image data
-  public selectedFile!:any;
-  public event1!: any;
-  imgURL: any;
-  receivedImageData: any;
-  base64Data: any;
-  convertedImage: any;
   
 
   constructor(public auth: AuthService, private userService: UserServiceService, private httpClient: HttpClient) {
@@ -47,12 +39,15 @@ export class ProfileComponent implements OnInit {
       (profile) => {
         var test= JSON.stringify(profile, null, 2);
         this.profileJson = JSON.stringify(profile, null, 2);
-        localStorage.setItem('profile', JSON.stringify(profile, null, 2));         
+        localStorage.setItem('profile', JSON.stringify(profile, null, 2)); 
       }
     );
-    
     this.restoredSession = JSON.parse(localStorage.getItem('profile')!);
-    this.username = this.restoredSession.nickname;
+    this.userDetails.username=this.restoredSession.nickname;
+    this.userDetails.email=this.restoredSession.email;
+    this.userDetails.bio=this.restoredSession.bio;
+    this.userDetails.image=this.restoredSession.picture;
+
     this.email = this.restoredSession.email;
     this.userService.getUserDetails(this.restoredSession.email).subscribe(
       (data) => {
@@ -61,60 +56,9 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  public  onFileChanged(event: any) {
-    console.log(event);
-    this.selectedFile = event.target.files[0];
-
-    // Below part is used to display the selected image
-    let reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (event2) => {
-      this.imgURL = reader.result;
-  };
-
- }
-
-  // This part is for uploading
-  onUpload() {
-    const uploadData = new FormData();
-    uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
-    this.userDetails.image=this.selectedFile;
-    this.userService.updateUserDetails(this.email, this.userDetails)
-    .subscribe(
-                 res => {console.log(res);
-                         this.receivedImageData = res;
-                         this.base64Data = this.receivedImageData.pic;
-                         this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data; },
-                 err => console.log('Error Occured duringng saving: ' + err)
-              );
-              
-   }
 
 
-
-
-  onSelectFile(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader() ;
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = event.target!.result;
-      }
-      const uploadData = new FormData();
-      uploadData.append('myFile', this.selectedFile);
-      this.userDetails=this.restoredSession;
-      this.userDetails.image=this.selectedFile;
-      this.userService.updateUserDetails(this.email, this.userDetails)
-      .subscribe(
-                   res => {console.log(res);
-                           this.receivedImageData = res;
-                           this.base64Data = this.receivedImageData.pic;
-                           this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data; },
-                   err => console.log('Error Occured duringng saving: ' + err)
-                );
-
-    }
-  }
+ 
 
 
 
@@ -126,8 +70,7 @@ export class ProfileComponent implements OnInit {
           console.log("response bio from request: "+databaseResponse.bio);
        }
       );
-      let userDetailsRandom: UserDetails = new UserDetails("randomUser", "random mail", "randomBio");
-      this.userService.postUserDetails(userDetailsRandom).subscribe(
+      this.userService.postUserDetails(this.userDetails).subscribe(
         (data2: UserDetails) => {
          let databaseResponse: UserDetails = data2;
           console.log("response for random bio from request: "+databaseResponse.bio);

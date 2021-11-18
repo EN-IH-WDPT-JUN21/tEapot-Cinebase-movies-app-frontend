@@ -8,14 +8,6 @@
     <div class="fb-profile">
         <img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
 
-        <input type="text" placeholder="Enter your bio" >
-        <button (click)="test(email)">test fetch user details by email</button>
-        <div class="image-container">
-        <img align="left" [src]="url ? url : user.picture" class=""> <br/>
-        <input type='file' (change)="onSelectFile($event)" class="select-profile-picture">
-        <span class="message">Tap here to select your picture</span>
-        </div>
-
         <div class="fb-profile-text">
             <h1>{{username}}</h1>
             
@@ -85,23 +77,3 @@
 </div>
 
 
-
-  Get Public Message
-<!-- 
-TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
-
-
-<div>
-  <input type="file" (change)="onFileChanged($event)">
-
-  <img [src]="imgURL" height="200" *ngIf="imgURL">
-</div>
-
-<input type="button" (click)="onUpload()" value="upload">
-
-<hr />
-
-Received Image:
-
-{{ receivedImageData['pic'] | json}}
-<img [src]="convertedImage" > -->

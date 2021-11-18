@@ -48,7 +48,7 @@ import { HomeComponent } from './home/home.component';
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {
-        allowedList: [`${env.dev.serverUrl}/api**`],
+        allowedList: [`${env.dev.serverUrl}/api*`],
       },
     }),
   ],
