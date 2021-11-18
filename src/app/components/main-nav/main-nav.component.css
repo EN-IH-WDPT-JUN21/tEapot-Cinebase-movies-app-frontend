@@ -1,0 +1,29 @@
+:host {
+  flex: 1;
+}
+
+.navbar-nav{
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+}
+
+.navbar-item {
+  display: inline;
+}
+
+.menu{
+  display: flex; 
+  flex-direction: row; 
+  float: right; 
+  align-items: center;
+  position: absolute;
+  right: 70px;
+  top: 10px;
+  
+}
+
+a {
+  display: block;
+  padding: 8px;
+}
