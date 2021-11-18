@@ -6,11 +6,18 @@
 <div class="container-fluid">
   <div class="row">
     <div class="fb-profile">
-        <img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
+        <!-- <img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
+
+        <button (click)="test()">test buttn</button> -->
+        <div class="fb-profile-text" stayle="margin-left: 40px;">
+          <h1>{{username | uppercase}}</h1> 
+        </div>
+
 
         <div class="fb-profile-text">
             <h1>{{username}}</h1>
             
+
         </div>
     </div>
   </div>
@@ -75,5 +82,7 @@
 
 </div>
 </div>
-
+<div class = "footer">
+  <app-footer></app-footer>
+</div>
 

@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
     this.name = 'Unregistered User';
     this.email = "";
     this.username = '';
-    this.userDetails= new UserDetails("", "", "");
+    this.userDetails= new UserDetails("", "", "", "");
   }
 
   ngOnInit(): void {
@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
     this.email = this.restoredSession.email;
     this.userService.getUserDetails(this.restoredSession.email).subscribe(
       (data) => {
-        const databaseResponse=new UserDetails( data.email, data.username, data.bio);
+        const databaseResponse=new UserDetails( data.email, data.username, data.bio, data.image);
      });
   }
 
@@ -81,7 +81,7 @@ export class ProfileComponent implements OnInit {
     public getUserDetailsFromDB(){
      return this.userService.getUserDetails(this.restoredSession.nickname).subscribe(
        (data) => {
-         const databaseResponse=new UserDetails( data.email, data.username, data.bio);
+         const databaseResponse=new UserDetails( data.email, data.username, data.bio, data.image);
          this.userDetails = databaseResponse;
          console.log("user_details " + this.userDetails.email);
       });

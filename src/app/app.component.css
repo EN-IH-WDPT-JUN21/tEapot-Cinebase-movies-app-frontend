@@ -1,0 +1,14 @@
+
+
+.footer {
+    position: sticky;
+    position: -webkit-sticky;
+    left: 0;
+    bottom: 0;
+}
+
+.container{
+    background:rgba(229, 229, 229, 0.83);
+    padding: 10px;
+   
+}

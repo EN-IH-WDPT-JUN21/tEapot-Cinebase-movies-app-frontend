@@ -1,6 +1,4 @@
-:host {
-  flex: 1;
-}
+
 
 .navbar-nav{
    display: flex;
@@ -26,4 +24,16 @@
 a {
   display: block;
   padding: 8px;
+}
+
+.sticky{
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+  z-index: 10;
+  width: 100%;
+}
+
+.content{
+  height: 10vh;
 }
