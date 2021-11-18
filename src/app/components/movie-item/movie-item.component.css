@@ -7,9 +7,10 @@ img{
 }
 
 a {
+    font-family: 'Roboto';
     text-decoration: none;
     cursor: pointer;
-    color:black;
+    color:#354855;
 }
 
 a:hover {

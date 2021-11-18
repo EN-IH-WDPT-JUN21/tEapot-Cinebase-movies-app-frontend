@@ -33,8 +33,8 @@
     </div>
 
     <ng-template #loaded>
-        <ul class="list-group list-group-flush" style="margin-left: 40px; margin-right: 70px;">
-            <app-movie-item *ngFor="let movie of listOfMovies" [movie]="movie"></app-movie-item>
+        <ul class="list-group list-group-flush" style="margin-left: 40px; margin-right: 70px; ">
+            <app-movie-item *ngFor="let movie of listOfMovies" [movie]="movie" ></app-movie-item>
         </ul>
         <p *ngIf="listOfMovies.length < 1">No results. Search for something meaningful</p>
     </ng-template>
