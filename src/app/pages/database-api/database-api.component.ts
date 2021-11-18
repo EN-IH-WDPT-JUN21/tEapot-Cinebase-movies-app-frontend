@@ -29,7 +29,7 @@ export class DatabaseApiComponent implements OnInit {
 
   callApi(): void {
     this.http
-      .get(`${env.dev.serverUrl}/api/user`)
+      .get(`${env.dev.serverUrl}/api/users`)
       .subscribe((result: any) => {
         this.message = result.message;
       });
@@ -37,7 +37,7 @@ export class DatabaseApiComponent implements OnInit {
 
   callSecureApi(): void {
     this.http
-      .get(`${env.dev.serverUrl}/api/user`)
+      .get(`${env.dev.serverUrl}/api/users`)
       .subscribe((result: any) => {
         this.message = result.message;
 

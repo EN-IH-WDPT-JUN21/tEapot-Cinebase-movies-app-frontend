@@ -1,12 +1,23 @@
-<div class="navbar-nav mr-auto">
-  <div class="nav-item">
+<div class="navbar-nav" #stickyMenu [class.sticky]="sticky">
+  <div class="nav-item" style="float: left;">
     <a
       routerLink="/"
       class="nav-link"
       routerLinkActive="router-link-exact-active"
       [routerLinkActiveOptions]="{ exact: true }"
     >
-      Home
+    <img src="../../../assets/img/logo-small-20.png" style="max-width: 46px; margin-left: 50px; margin-top: 10px;">
+    </a>
+  </div>
+
+  <div class="menu" >
+  <div class="nav-item">
+    <a
+      routerLink="/app-database-api"
+      class="nav-link"
+      routerLinkActive="router-link-exact-active"
+    >
+    <i class="bi bi-search" style="font-size: 25px; min-width: 50px; color: #354855; justify-content: space-between; "></i>
     </a>
   </div>
   <div class="nav-item">
@@ -15,16 +26,7 @@
       class="nav-link"
       routerLinkActive="router-link-exact-active"
     >
-      Profile
-    </a>
-  </div>
-  <div class="nav-item">
-    <a
-      routerLink="/app-database-api"
-      class="nav-link"
-      routerLinkActive="router-link-exact-active"
-    >
-      External API
+    <i class="bi bi-person-fill" style="font-size: 2rem; min-width: 50px; color: #354855; justify-content: space-between; margin-left: 20px;"></i>
     </a>
   </div>
   <div class="nav-item">
@@ -37,3 +39,8 @@
     </a>
   </div>
 </div>
+
+</div>
+
+<!-- this is fake long content -->
+<div class="content"></div>

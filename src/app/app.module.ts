@@ -25,7 +25,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { DatabaseApiComponent } from './pages/database-api/database-api.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +47,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MainNavComponent,
     LoadingComponent,
     ProfileComponent,
-    DatabaseApiComponent
+    DatabaseApiComponent,
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +60,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {
-        allowedList: [`${env.dev.serverUrl}/api**`],
+        allowedList: [`${env.dev.serverUrl}/api*`],
       },
     }),
     NgbModule,
