@@ -1,6 +1,6 @@
 
 export default class UserDetails {
-    _image: any;
+
     
     public get image(): any {
         return this._image;
@@ -28,7 +28,6 @@ export default class UserDetails {
         this._username = value;
     }
 
-    constructor(private _username: string, private _email: string, private _bio: string) { }
+    constructor(private _username: string, private _email: string, private _bio: string, private _image: string, ) { }
 
-    
 }
