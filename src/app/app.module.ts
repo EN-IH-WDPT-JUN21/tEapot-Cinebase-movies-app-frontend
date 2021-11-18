@@ -23,11 +23,14 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
-import { DatabaseApiComponent } from './pages/database-api/database-api.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MediaListComponent } from './components/media-list/media-list.component';
+import { MediaListItemComponent } from './components/media-list-item/media-list-item.component';
+import { AllMediaListComponent } from './components/all-media-list/all-media-list.component';
+
 
 
 @NgModule({
@@ -47,9 +50,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MainNavComponent,
     LoadingComponent,
     ProfileComponent,
-    DatabaseApiComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    MediaListComponent,
+    MediaListItemComponent,
+    AllMediaListComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +79,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       useClass: AuthHttpInterceptor,
       multi: true,
     },
+    HttpClientModule
+
   ],
   bootstrap: [AppComponent]
 })

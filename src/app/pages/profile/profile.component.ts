@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import UserDetails from 'src/app/models/user-details.model';
 import { UserServiceService } from 'src/app/service/user-service/user-service.service';
@@ -12,7 +12,7 @@ import { UserServiceService } from 'src/app/service/user-service/user-service.se
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit, AfterViewInit{
+export class ProfileComponent implements OnInit {
 
   restoredSession: any;
   profileJson!: string;
@@ -27,11 +27,11 @@ export class ProfileComponent implements OnInit, AfterViewInit{
 
   
 
-  constructor(public auth: AuthService, private userService: UserServiceService, private httpClient: HttpClient, private elementRef: ElementRef) {
+  constructor(public auth: AuthService, private userService: UserServiceService, private httpClient: HttpClient) {
     this.name = 'Unregistered User';
     this.email = "";
     this.username = '';
-    this.userDetails= new UserDetails("", "", "");
+    this.userDetails= new UserDetails("", "", "", "");
   }
 
   ngOnInit(): void {
@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit, AfterViewInit{
     this.email = this.restoredSession.email;
     this.userService.getUserDetails(this.restoredSession.email).subscribe(
       (data) => {
-        const databaseResponse=new UserDetails( data.email, data.username, data.bio);
+        const databaseResponse=new UserDetails( data.email, data.username, data.bio, data.image);
      });
   }
 
@@ -81,7 +81,7 @@ export class ProfileComponent implements OnInit, AfterViewInit{
     public getUserDetailsFromDB(){
      return this.userService.getUserDetails(this.restoredSession.nickname).subscribe(
        (data) => {
-         const databaseResponse=new UserDetails( data.email, data.username, data.bio);
+         const databaseResponse=new UserDetails( data.email, data.username, data.bio, data.image);
          this.userDetails = databaseResponse;
          console.log("user_details " + this.userDetails.email);
       });
@@ -94,10 +94,5 @@ export class ProfileComponent implements OnInit, AfterViewInit{
           const databaseResponse: UserDetails = data;
        });
         }
-
-    ngAfterViewInit() {
-        this.elementRef.nativeElement.ownerDocument
-            .body.style.backgroundImage = 'url("assets/img/screen_wide.png")';
-    }
 
 }
