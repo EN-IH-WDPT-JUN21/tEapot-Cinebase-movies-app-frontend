@@ -6,6 +6,17 @@
 
 
 
+        <!-- <div class="fb-profile-text">
+            <h1>{{username}}</h1>
+            
+
+        </div> -->
+    </div>
+  </div>
+</div> <!-- /container fluid-->  
+<div class="container">
+  <div class="col-sm-8">
+
 
 <section class="section about-section gray-bg" id="about" *ngIf="auth.user$ | async as user" (onload)="getUserDetails(userDetails)">
   <div class="container">
@@ -73,5 +84,14 @@
       </div>
   </div>
 </section>
+
+
+</div>
+</div>
+
+<div class = "footer">
+  <app-footer></app-footer>
+  </div>
+
 
 

@@ -39,6 +39,11 @@ p {
     opacity: 1;
   }
 
+  .container-fluid{
+    min-height: 300px;
+    vertical-align:top; 
+  }
+
   .container-fluid, .container{
     background:rgba(229, 229, 229, 0.83);
     padding: 20px;
