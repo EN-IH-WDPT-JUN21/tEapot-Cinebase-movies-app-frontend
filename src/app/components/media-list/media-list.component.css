@@ -1,0 +1,6 @@
+.playlist {
+    width: 100%;
+    display: flexbox;
+    justify-content: space-around;
+    flex-flow: row wrap;
+}
