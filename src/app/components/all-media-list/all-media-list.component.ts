@@ -25,7 +25,6 @@ export class AllMediaListComponent implements OnInit {
     this.mediaService.getPlaylistByUserEmail(JSON.parse(localStorage.getItem('profile')!).email).subscribe(
       result => {
         this.playlistList = result
-        console.log(result)
       }
     ) 
   }

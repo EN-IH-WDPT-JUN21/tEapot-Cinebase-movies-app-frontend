@@ -1,4 +1,4 @@
-<div *ngIf='isLoaded' class="container media">
+<div *ngIf='media$ | async as media' class="container media">
     <p>{{media.title}}</p>
     <img src="{{media.image}}"/>
 </div>

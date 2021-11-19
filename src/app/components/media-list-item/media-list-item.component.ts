@@ -2,6 +2,8 @@ import { MoviesService } from 'src/app/service/movie-service/movies.service';
 import { CompleteMedia } from './../../models/complete-media.models';
 import { SimplifiedMedia } from './../../models/simplified-media.models';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-media-list-item',
@@ -13,7 +15,7 @@ export class MediaListItemComponent implements OnInit {
   @Input()
   simpleMedia!: SimplifiedMedia;
 
-  media!: CompleteMedia
+  media$!: Observable<CompleteMedia>
 
   @Output() mediaRemoved: EventEmitter<number> = new EventEmitter();
 
@@ -25,18 +27,13 @@ export class MediaListItemComponent implements OnInit {
   constructor(private movieService: MoviesService) { }
 
   ngOnInit(): void {
-    console.log(this.simpleMedia);
     this.getCompleteMediaByImdbId(this.simpleMedia.imdbId);
   }
 
   getCompleteMediaByImdbId(imdbId: string): CompleteMedia {
     let media!: CompleteMedia;
-    this.movieService.getMovieById(imdbId).subscribe(
-      result => {
-        media = result
-        console.log(media);
-      }
-      );
+    this.media$ = this.movieService.getMovieById(imdbId);
+    this.media$.pipe(tap(x => console.log(x)));
     return media;
   }
 

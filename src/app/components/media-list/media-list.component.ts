@@ -23,7 +23,6 @@ export class MediaListComponent implements OnInit {
     const playlistId: number = this.activatedRoute.snapshot.params['playlistId'];
     this.mediaService.getPlaylist(playlistId).subscribe(result => {
       this.playlist = result
-      console.log(this.playlist);
     });
   }
 

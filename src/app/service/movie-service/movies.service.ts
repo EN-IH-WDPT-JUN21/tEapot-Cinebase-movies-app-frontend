@@ -5,8 +5,6 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/publish';
 import 'rxjs/add/observable/of';
-import { Movie } from '../../models/movie.model';
-import { retry } from 'rxjs/operators';
 
 const mediaCache: { [key: string]: Observable<CompleteMedia> } = {};
 
@@ -16,8 +14,9 @@ const mediaCache: { [key: string]: Observable<CompleteMedia> } = {};
 export class MoviesService {
 
   // k_sg6g9gql
+  // k_kf0sb0c0
 
-  private readonly apiKey='k_sg6g9gql';
+  private readonly apiKey='k_kf0sb0c0';
   private readonly baseUrl = 'https://imdb-api.com/en/API';
   
   constructor(private http: HttpClient) { }
@@ -39,8 +38,12 @@ export class MoviesService {
   }
 
   getMovieById(id: string): Observable<any> {
-    mediaCache[id] = mediaCache[id] || this.fetchMediaById(id);
-    console.log(mediaCache);
+    if (mediaCache[id] == null) {
+      mediaCache[id] = this.fetchMediaById(id);
+    }
+    // mediaCache[id] = mediaCache[id] || this.fetchMediaById(id);
+    console.log(mediaCache[id]);
+    mediaCache[id].subscribe(data => console.log(data));
     return mediaCache[id];
   }
 
