@@ -22,12 +22,6 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [AuthGuard],
   },
-
-  {
-
-    path: '**',
-    component: PageNotFoundComponent,
-   },
   {
     path: 'movies',
     component: MovieListComponent,
@@ -39,7 +33,12 @@ const routes: Routes = [
   {
     path: 'playlist/:playlistId',
     component: MediaListComponent
-  }
+  },
+  {
+
+    path: '**',
+    component: PageNotFoundComponent,
+   },
 ];
 
 @NgModule({

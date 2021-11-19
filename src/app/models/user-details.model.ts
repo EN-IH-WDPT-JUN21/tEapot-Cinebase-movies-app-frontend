@@ -1,5 +1,11 @@
 
 export default class UserDetails {
+    public get id(): number {
+        return this._id;
+    }
+    public set id(value: number) {
+        this._id = value;
+    }
 
     
     public get image(): any {
@@ -28,6 +34,6 @@ export default class UserDetails {
         this._username = value;
     }
 
-    constructor(private _username: string, private _email: string, private _bio: string, private _image: string, ) { }
+    constructor(private _id: number, private _email: string, private _username: string,  private _bio: string, private _image: string, ) { }
 
 }
