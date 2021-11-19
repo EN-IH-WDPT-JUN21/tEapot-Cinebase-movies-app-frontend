@@ -1,4 +1,6 @@
-import { CompleteMedia } from '../../models/complete-media.models';
+import { MoviesService } from 'src/app/service/movie-service/movies.service';
+import { CompleteMedia } from './../../models/complete-media.models';
+import { SimplifiedMedia } from './../../models/simplified-media.models';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -9,18 +11,33 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 export class MediaListItemComponent implements OnInit {
 
   @Input()
-  media!: CompleteMedia;
+  simpleMedia!: SimplifiedMedia;
+
+  media!: CompleteMedia
 
   @Output() mediaRemoved: EventEmitter<number> = new EventEmitter();
 
   @Output() mediaAdded: EventEmitter<number> = new EventEmitter();
 
-  @Input() position!: number;
+  isLoaded: boolean = false;
 
 
-  constructor() { }
+  constructor(private movieService: MoviesService) { }
 
   ngOnInit(): void {
+    console.log(this.simpleMedia);
+    this.getCompleteMediaByImdbId(this.simpleMedia.imdbId);
+  }
+
+  getCompleteMediaByImdbId(imdbId: string): CompleteMedia {
+    let media!: CompleteMedia;
+    this.movieService.getMovieById(imdbId).subscribe(
+      result => {
+        media = result
+        console.log(media);
+      }
+      );
+    return media;
   }
 
   removeMedia(position: number): void {

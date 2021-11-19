@@ -13,15 +13,15 @@ export class MediaService {
 
   constructor(private http: HttpClient) { }
 
-  getMediaLists(): Observable<Playlist[]> {
+  getPlaylists(): Observable<Playlist[]> {
     return this.http.get<Playlist[]>(this.baseUrl);
   }
 
-  getMediaList(id: number): Observable<Playlist> {
+  getPlaylist(id: number): Observable<Playlist> {
     return this.http.get<Playlist>(`${this.baseUrl}/${id}`);
   }
 
-  getMediaListByUserEmail(email: string): Observable<Playlist[]> {
+  getPlaylistByUserEmail(email: string): Observable<Playlist[]> {
     return this.http.get<Playlist[]>(`${this.baseUrl}?email=${email}`);
   }
 
