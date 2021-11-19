@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   profileJson!: string;
   email: string;
   img: string;
-  username!: string;
+  username: string;
   bio: string;
   id: number;
   url!: any;
