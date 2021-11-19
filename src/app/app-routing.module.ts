@@ -35,15 +35,14 @@ const routes: Routes = [
   {
     path: 'playlist/:playlistId',
     component: MediaListComponent
-  }
-,
-  
+
+  },  
   {
 
     path: '**',
     component: PageNotFoundComponent,
    }
-
+   
 ];
 
 @NgModule({
