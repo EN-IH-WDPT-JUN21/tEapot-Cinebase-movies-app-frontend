@@ -4,7 +4,7 @@ import { DataTransferService } from '../../services/data-transfer/data-transfer.
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MoviesService } from 'src/app/services/movie-service/movies.service';
+import { MoviesService } from 'src/app/service/movie-service/movies.service';
 
 @Component({
   selector: 'app-media-list',
@@ -24,9 +24,7 @@ export class MediaListComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private router: Router,
     private dataTransferService: DataTransferService,
-    private movieService: MoviesService
   ) { }
 
   ngOnInit(): void {

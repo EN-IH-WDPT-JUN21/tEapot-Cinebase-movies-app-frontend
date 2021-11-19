@@ -28,11 +28,13 @@ const routes: Routes = [
    },
   {
     path: 'playlists',
-    component: AllMediaListComponent
+    component: AllMediaListComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'playlist/:playlistId',
-    component: MediaListComponent
+    component: MediaListComponent,
+    canActivate: [AuthGuard],
   },
   {
 

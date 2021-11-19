@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class AllMediaListComponent implements OnInit {
 
   playlistList: Playlist[] = [
-      {
+      /*{
         id: 1,
         userId: 1,
         name: "Studio Ghibli",
@@ -49,13 +49,13 @@ export class AllMediaListComponent implements OnInit {
             title: "Shutter Island"
           }
         ]
-      }
+      }*/
     ];
 
   constructor( 
     private router: Router,
-    private dataTransferService: DataTransferService
-    /*private mediaService: MediaService*/
+    private dataTransferService: DataTransferService,
+    private mediaService: MediaService
     ) { }
 
   ngOnInit(): void {
@@ -63,11 +63,12 @@ export class AllMediaListComponent implements OnInit {
   }
 
   updateList() {
-    /* this.mediaService.getMediaLists().subscribe(
+    this.mediaService.getMediaListByUserEmail(JSON.parse(localStorage.getItem('profile')!).email).subscribe(
       result => {
         this.playlistList = result
+        console.log(result)
       }
-    ) */
+    ) 
   }
 
   removePlaylist(playlistPosition: number): void {
@@ -96,5 +97,4 @@ export class AllMediaListComponent implements OnInit {
     let playlist = this.playlistList.find(p => p.id === id);
     this.dataTransferService.changePlaylist(playlist!);
   }
-
 }

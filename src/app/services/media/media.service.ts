@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class MediaService {
 
-  private readonly baseUrl = 'http://localhost:8100/api/playlist'
+  private readonly baseUrl = 'http://localhost:8000/api/playlist'
 
   constructor(private http: HttpClient) { }
 
@@ -21,8 +21,8 @@ export class MediaService {
     return this.http.get<Playlist>(`${this.baseUrl}/${id}`);
   }
 
-  getMediaListByUserId(userId: number): Observable<Playlist> {
-    return this.http.get<Playlist>(`${this.baseUrl}/user?userid=${userId}`);
+  getMediaListByUserEmail(email: string): Observable<Playlist[]> {
+    return this.http.get<Playlist[]>(`${this.baseUrl}?email=${email}`);
   }
 
   createPlaylist(playlist: Playlist): void {
