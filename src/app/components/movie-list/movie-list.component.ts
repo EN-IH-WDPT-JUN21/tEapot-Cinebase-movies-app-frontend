@@ -26,7 +26,8 @@ export class MovieListComponent implements OnInit {
     this.getFilms();
   }
 
-   getFilms():void {                      // Remove before submit the project 
+   getFilms():void {       
+    if (!this.mock) {     // Remove before submit the project  
       this.movieService.getFilms().subscribe(
          result => {
           console.log(result.items);
@@ -34,9 +35,14 @@ export class MovieListComponent implements OnInit {
           this.loading = false;
         }
       )
+    } else {
+      this.listOfMovies = testFilms.items;
+      this.loading = false;
+    }
   }
 
-   getTvSeries(): void {                // Remove before submit the project 
+   getTvSeries(): void {           
+    if (!this.mock) {     // Remove before submit the project  
       this.movieService.getTvSeries().subscribe(
          result => {
           console.log(result.items);
@@ -44,6 +50,10 @@ export class MovieListComponent implements OnInit {
           this.loading = false;
         }
       )
+    } else {
+      this.listOfMovies = testTvShows.items;
+      this.loading = false;
+    }
   }
 
   filterFilms(): void {
