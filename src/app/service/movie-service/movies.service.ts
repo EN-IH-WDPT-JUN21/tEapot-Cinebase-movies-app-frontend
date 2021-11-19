@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/publish';
 import 'rxjs/add/observable/of';
+import { share } from 'rxjs/operators';
 
 const mediaCache: { [key: string]: Observable<CompleteMedia> } = {};
 
@@ -51,8 +52,7 @@ export class MoviesService {
     console.log(`fetch media: ${id}`);
     return this.http.get<iCompleteMedia>(this.baseUrl+ '/Title/' + this.apiKey + '/' + id)
     .map(rawData => this.mapCompleteMedia(rawData))
-    .publish()
-    .refCount();
+    .pipe(share());
   }
 
   private mapCompleteMedia(body: iCompleteMedia) {

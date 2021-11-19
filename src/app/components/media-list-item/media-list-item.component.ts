@@ -30,11 +30,8 @@ export class MediaListItemComponent implements OnInit {
     this.getCompleteMediaByImdbId(this.simpleMedia.imdbId);
   }
 
-  getCompleteMediaByImdbId(imdbId: string): CompleteMedia {
-    let media!: CompleteMedia;
+  getCompleteMediaByImdbId(imdbId: string): void {
     this.media$ = this.movieService.getMovieById(imdbId);
-    this.media$.pipe(tap(x => console.log(x)));
-    return media;
   }
 
   removeMedia(position: number): void {
