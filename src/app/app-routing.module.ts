@@ -26,6 +26,8 @@ const routes: Routes = [
     path: 'movies',
     component: MovieListComponent,
    },
+
+
   {
     path: 'playlists',
     component: AllMediaListComponent
@@ -33,12 +35,14 @@ const routes: Routes = [
   {
     path: 'playlist/:playlistId',
     component: MediaListComponent
-  },
+
+  },  
   {
 
     path: '**',
     component: PageNotFoundComponent,
-   },
+   }
+   
 ];
 
 @NgModule({
