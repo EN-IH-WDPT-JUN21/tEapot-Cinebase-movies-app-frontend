@@ -1,7 +1,7 @@
 
 import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { Movie } from 'src/app/models/movie.model';
-import { MoviesService } from 'src/app/services/movie-service/movies.service';
+import { MoviesService } from 'src/app/service/movie-service/movies.service';
 import testFilms from './mock-files/testFilms.json';
 import testTvShows from './mock-files/testTvSeries.json';
 @Component({
