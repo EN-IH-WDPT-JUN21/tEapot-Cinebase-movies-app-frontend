@@ -111,7 +111,10 @@ export class MovieDetailComponent  {
         title:this.movie.title
       }
 
-      this.mediaService.updatePlaylist(this.selectedPlaylistId,this.simplifiedMedia);
+      console.log(this.selectedPlaylistId)
+      console.log(this.simplifiedMedia)
+
+      this.mediaService.updatePlaylist(this.selectedPlaylistId, this.simplifiedMedia);
       
       this.router.navigateByUrl('/movies')
     }
@@ -119,20 +122,9 @@ export class MovieDetailComponent  {
 
 
   getUserPlayList():void {
-    
-    this.userPlaylist=userPlayListData;
-    console.log( this.userPlaylist)
-
-
-
-    // this.mediaService.getMediaListByUserId(2).subscribe(
-    //   result => {
-        
-    //     this.userPlayList=result;
-    //     console.log(result)
-
-    //   }
-    // )
+    this.mediaService.getPlaylistByUserEmail(JSON.parse(localStorage.getItem('profile')!).email).subscribe(
+      result => this.userPlaylist = result
+    );
   }
 }
 
