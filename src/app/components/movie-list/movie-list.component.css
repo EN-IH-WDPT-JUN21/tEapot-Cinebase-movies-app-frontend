@@ -2,7 +2,6 @@
     font-family: 'Roboto';
     color: lightslategray;
     margin-left: 40px;
-    
 }
 
 .btn-group{
@@ -13,7 +12,7 @@
 
 
 p{
-    margin-left: 20px;
+    margin-left: 40px;
     font-family: 'Roboto';
     color: #354855;
     background: rgba(229, 229, 229, 0.83);

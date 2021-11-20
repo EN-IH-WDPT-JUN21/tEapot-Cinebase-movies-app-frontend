@@ -8,7 +8,7 @@
   </button>
 
 </div>
-<div class="modal-body" style = "font-family: 'Roboto'; color: #354855">
+<div class="modal-body">
   <div class="row">
 
     <div class="col-md-auto">
@@ -35,27 +35,27 @@
 
 <div class="modal-footer">
 
-  <button type="button" class="btn btn-outline-danger" style = "font-family: 'Roboto';">ADD TO PLAYLIST</button>
-  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')" style = "font-family: 'Roboto';">Close</button>
+
+  <!-- <button type="button" class="btn btn-outline-danger" style = "font-family: 'Roboto';">ADD TO PLAYLIST</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')" style = "font-family: 'Roboto';">Close</button> -->
 
   
-  <div class="form-check form-switch mt-1 float-left ">
-    <input class="form-check-input" type="checkbox" [(ngModel)]="isPlaylist">
+  <div class="form-check form-switch mt-1 float-left" *ngIf="auth.isAuthenticated$ | async" > <!---->
+    <input class="form-check-input" type="checkbox" [(ngModel)]="isPlaylist" >
     <label class="form-check-label">Add to playlist</label>
   </div>
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
 
-
-      <div class="input-group mb-3" *ngIf="isPlaylist">
-        <select  class="form-select" aria-label="Default select example">
-          <option selected>Choose playlist</option>
-          <option value="1">New...</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+      <div class="input-group mb-3" *ngIf="isPlaylist  && (auth.isAuthenticated$ | async)"><!---->
+        <select  class="form-select" [(ngModel)]="selectedPlaylistId">
+          <option selected value="0">Choose playlist...</option>
+          <option *ngFor="let playlist of userPlaylist" [ngValue]="playlist.id">{{playlist.name}}</option>
         </select>
         <div class="input-group-append">
-          <button class="btn btn-outline-primary" type="button" id="button-addon2">Add to playlist</button>
+          <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addToPlaylist()">Add to playlist</button>
         </div>
       </div>
+      
+
 
 </div>

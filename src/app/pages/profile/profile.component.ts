@@ -85,7 +85,6 @@ export class ProfileComponent implements OnInit {
       },
     );
 
-
   }
 
 
@@ -159,7 +158,21 @@ export class ProfileComponent implements OnInit {
 
       }
 
+    //the section to deal with profile changes
+    @ViewChild('form')
+    form!: NgForm;
 
+    isClicked: boolean = false;
+
+     buttonClicked(){
+      this.isClicked = !this.isClicked;  
+     }
+
+     //placeholder for update bio function
+     onSubmit(){
+      this.form.reset();
+      this.isClicked = false;
+     }
 
     createImageFromBlob(image: Blob) {
       let reader = new FileReader();

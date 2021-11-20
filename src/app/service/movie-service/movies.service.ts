@@ -8,10 +8,7 @@ import { Movie } from '../../models/movie.model';
 })
 export class MoviesService {
 
-
-
-  private readonly apiKey='k_nzr2ahzg';
-
+  private readonly apiKey='k_lvrir25s';
   private readonly baseUrl = 'https://imdb-api.com/en/API';
   
   constructor(private http: HttpClient) { }
