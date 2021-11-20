@@ -16,7 +16,7 @@ export class MoviesService {
   // k_sg6g9gql
   // k_kf0sb0c0
 
-  private readonly apiKey='k_lvrir25s';
+  private readonly apiKey='k_kmz1n6co';
   private readonly baseUrl = 'https://imdb-api.com/en/API';
   
   constructor(private http: HttpClient) { }

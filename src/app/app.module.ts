@@ -30,6 +30,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MediaListComponent } from './components/media-list/media-list.component';
 import { MediaListItemComponent } from './components/media-list-item/media-list-item.component';
 import { AllMediaListComponent } from './components/all-media-list/all-media-list.component';
+import { AddPlaylistModal } from './modal/add-playlist.modal';
 
 
 
@@ -54,7 +55,8 @@ import { AllMediaListComponent } from './components/all-media-list/all-media-lis
     PageNotFoundComponent,
     MediaListComponent,
     MediaListItemComponent,
-    AllMediaListComponent
+    AllMediaListComponent,
+    AddPlaylistModal
   ],
   imports: [
     BrowserModule,
