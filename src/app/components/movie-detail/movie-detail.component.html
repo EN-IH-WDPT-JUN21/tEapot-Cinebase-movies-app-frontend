@@ -52,7 +52,7 @@
           <option *ngFor="let playlist of userPlaylist" [ngValue]="playlist.id">{{playlist.name}}</option>
         </select>
         <div class="input-group-append">
-          <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addToPlaylist()">Add to playlist</button>
+          <button [disabled]="selectedPlaylistId === 0" class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addToPlaylist(); activeModal.close('Close click')">Add to playlist</button>
         </div>
       </div>
       
