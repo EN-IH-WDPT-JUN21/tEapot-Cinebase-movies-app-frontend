@@ -96,6 +96,8 @@ export class ProfileComponent implements OnInit, AfterViewInit {
         this.userService.getUserStats(tempDetails.email).subscribe(
           (data) => {
             this.userStats=data;
+
+            this.userStats.avgTitlesInPlaylist=parseFloat(this.userStats.avgTitlesInPlaylist.toFixed(2));
           }
         );
         if( this.userDetails.imageId!=null && this.userDetails.imageId!=0){

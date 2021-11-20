@@ -30,7 +30,7 @@ export class MediaService {
   }
 
   updatePlaylist(id: number, media: SimplifiedMedia): void {
-    this.http.patch<void>(`${this.baseUrl}/${id}`, media).subscribe();
+    this.http.put<void>(`${this.baseUrl}/${id}`, media).subscribe();
   }
 
   deleteMovie(playlistId: number, imdbId: string): Observable<Playlist> {
