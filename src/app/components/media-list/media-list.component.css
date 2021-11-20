@@ -1,5 +1,36 @@
-.media {
-    background-color:rgba(229, 229, 229, 0.83);
-    width: 300px;
-    text-align: center;
+
+
+.footer {
+    position: sticky;
+    position: -webkit-sticky;
+    left: 0;
+    bottom: 0;
+  }
+
+  .container{
+    background:rgba(229, 229, 229, 0.83);
+    padding: 20px;
+    max-width: 1140px;
+    min-height: 650px;
+   
 }
+
+
+h1{
+    font-family: Righteous;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 26px;
+    line-height: 32px;
+    color: #553542;
+    margin-bottom: 40px;
+  }
+
+  .btn-primary{
+    background-color: #354855;
+    color: aliceblue;
+    border-style: none;
+    font-family: 'Roboto';
+    margin-top: 40px;
+    margin-left: 20px;
+  }

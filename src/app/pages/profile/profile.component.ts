@@ -1,11 +1,13 @@
+import { Playlist } from './../../models/playlist.models';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import UserDetails from 'src/app/models/user-details.model';
 import { UserServiceService } from 'src/app/service/user-service/user-service.service';
 import { ImageService } from 'src/app/service/image-service/image-service.service';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
 }
@@ -30,7 +32,7 @@ export class UserStats{
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, AfterViewInit {
   @Input() src: any;
   @Input() bioInput: any;
   @ViewChild('form')
@@ -51,7 +53,8 @@ export class ProfileComponent implements OnInit {
   userStats: UserStats;
 
   
-  constructor(public auth: AuthService, private userService: UserServiceService, private httpClient: HttpClient, private imageService: ImageService) {
+  constructor(public auth: AuthService, private userService: UserServiceService, private httpClient: HttpClient, 
+    private elementRef: ElementRef, private imageService: ImageService, private router: Router) {
     this.userDetails= localStorage.UserDetails;
       this.bio=this.userDetails.bio;
       this.userStats=new UserStats();
@@ -207,6 +210,19 @@ export class ProfileComponent implements OnInit {
 
   }
 
+  public updateBio(bioInput: any){
+    this.userDetails.bio=bioInput.value;
+    this.updateUserDetails(this.userDetails.email, this.userDetails);
+  }
+
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.ownerDocument
+        .body.style.backgroundImage = 'url("assets/img/screen_wide.png")';
+}
+
+employeeDetails(id: number){
+  this.router.navigate(['playlist', id]);
+}
   logout(): void {
     this.auth.logout({ returnTo: "/home" });
   }
