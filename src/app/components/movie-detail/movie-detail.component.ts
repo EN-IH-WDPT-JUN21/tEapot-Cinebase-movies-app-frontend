@@ -1,3 +1,4 @@
+import { CompleteMedia } from './../../models/complete-media.models';
 import { MoviesService } from 'src/app/service/movie-service/movies.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +15,7 @@ export class MovieDetailComponent  {
 
   @Input() movieId : any;
 
-  movie! : MovieDetail;
+  movie! : CompleteMedia;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private movieService: MoviesService,public activeModal: NgbActiveModal) {
     this.movie = {
@@ -22,9 +23,9 @@ export class MovieDetailComponent  {
       title: '',
       fullTitle: '',
       type: '',
-      year: '',
+      year: 0,
       image: '',
-      releaseDate: '',
+      releaseDate: new Date(),
       runtimeMins: '',
       runtimeStr: '',
       plot: '',
@@ -33,7 +34,7 @@ export class MovieDetailComponent  {
       writers: '',
       stars: '',
       genres: '',
-      imdbRating: '',
+      imDbRating: '',
       tvSeriesInfo: {
         yearEnd: 0,
         creators: '',
@@ -75,30 +76,7 @@ export class MovieDetailComponent  {
     
     this.movieService.getMovieById(this.movieId).subscribe(
       result => {
-        this.movie = {
-          id: result.id,
-          title: result.title,
-          fullTitle: result.fullTitle,
-          type: result.type,
-          year: result.year,
-          image: result.image,
-          releaseDate: result.releaseDate,
-          runtimeMins: result.runtimeMins,
-          runtimeStr: result.runtimeStr,
-          plot: result.plot,
-          awards: result.awards,
-          directors: result.directors,
-          writers: result.writers,
-          stars: result.stars,
-          genres: result.genres,
-          imdbRating: result.imDbRating,
-          tvSeriesInfo: {
-            yearEnd: 123,
-            creators: '',
-            seasons: []
-          }
-        }
-
+        this.movie = result
       }
     )
   }

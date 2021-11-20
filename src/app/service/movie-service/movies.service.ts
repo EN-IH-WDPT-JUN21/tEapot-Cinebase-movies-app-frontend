@@ -7,7 +7,7 @@ import 'rxjs/add/operator/publish';
 import 'rxjs/add/observable/of';
 import { share } from 'rxjs/operators';
 
-const mediaCache: { [key: string]: Observable<CompleteMedia> } = {};
+const mediaCacheObject: { [key: string]: CompleteMedia } = {};
 
 @Injectable({
   providedIn: 'root'
@@ -38,21 +38,22 @@ export class MoviesService {
     return this.http.get<any>(this.baseUrl+'/SearchMovie/'+this.apiKey + '/' +text);
   }
 
-  getMovieById(id: string): Observable<any> {
-    if (mediaCache[id] == null) {
-      mediaCache[id] = this.fetchMediaById(id);
+  getMovieById(id: string): Observable<CompleteMedia> {
+    if (mediaCacheObject[id] == null) {
+      let observableMedia = this.fetchMediaById(id);
+      observableMedia.subscribe(result => mediaCacheObject[id] = result);
+      return observableMedia;
     }
-    // mediaCache[id] = mediaCache[id] || this.fetchMediaById(id);
-    console.log(mediaCache[id]);
-    mediaCache[id].subscribe(data => console.log(data));
-    return mediaCache[id];
+    console.log(mediaCacheObject[id]);
+    return Observable.of(mediaCacheObject[id]);
   }
 
   fetchMediaById(id: string): Observable<any> {
     console.log(`fetch media: ${id}`);
     return this.http.get<iCompleteMedia>(this.baseUrl+ '/Title/' + this.apiKey + '/' + id)
     .map(rawData => this.mapCompleteMedia(rawData))
-    .pipe(share());
+    .publish()
+    .refCount();
   }
 
   private mapCompleteMedia(body: iCompleteMedia) {

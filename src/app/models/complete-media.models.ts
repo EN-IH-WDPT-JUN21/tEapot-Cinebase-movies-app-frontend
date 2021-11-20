@@ -14,7 +14,7 @@ export interface iCompleteMedia {
     writers: string,
     stars: string,
     genres: string,
-    imdbRating: string,
+    imDbRating: string,
     tvSeriesInfo: TvSeriesInfo
 }
 
@@ -40,7 +40,7 @@ export class CompleteMedia {
     public writers!: string;
     public stars!: string;
     public genres!: string;
-    public imdbRating!: string;
+    public imDbRating!: string;
     public tvSeriesInfo!: TvSeriesInfo;
 
     constructor(rawData: any) {
