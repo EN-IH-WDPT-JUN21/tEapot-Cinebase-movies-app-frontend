@@ -3,91 +3,106 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 
+    
+<!-- /container fluid-->  
 
-
-
-        <div class="fb-profile-text">
-            <h1>{{username}}</h1>
-        </div>
-
- 
 <div class="container">
   <div class="col-sm-8">
+      
 
+<section id="about" *ngIf="auth.user$ | async as user" (onload)="getUserDetails(userDetails)" >
+    <div class="name" >
+        <h1>{{user.nickname| uppercase}}</h1>
+    </div>
+    
+      <div class="row flex-row-reverse">
+          <div class="col-lg-6 upper">
+            <div class = "profile-info" style = "margin-bottom: 40px;">
+                  <div class="row about-list" style="margin-right: 60px;">
+                   
+                    
 
-<section class="section about-section gray-bg" id="about" *ngIf="auth.user$ | async as user" (onload)="getUserDetails(userDetails)">
-  <div class="container">
-      <div class="row align-items-center flex-row-reverse">
-          <div class="col-lg-6">
-              <div class="about-text go-to">
-                  <h3 class="dark-color">About Me</h3>
-                  <div>
-                <input #bioInput type='text' accept="text" (change)="updateBio(bioInput)" class="bio">
-                <br/>
-                  <p class="message">{{bio}}</p>
-                </div>
-                  <div class="row about-list">
-                      <div class="col-md-6">
-                      </div>
                       <div class="col-md-6">
                           <div class="media">
                               <label>E-mail</label>
                               <p>{{user.email}}</p>
                           </div>
                           <div class="media">
-                              <label>Verified:</label>
-                              <p>{{user.email_verified}}</p>
+                              <label>Email Verified:</label>
+                              <p *ngIf = "user.email_verified" style = "color: green;">Yes</p>
+                              <p *ngIf = "!user.email_verified" style = "color: #553542;">Pending</p>
                           </div>
                           <div class="media">
                               <label>Last update </label>
-                              <p>{{user.updated_at}}</p>
+                              <p>{{user.updated_at | date: 'mediumDate'}}</p>
                           </div>
                       </div>
                   </div>
-              </div>
+                  <div class="counter">
+                    <div class="stats">
+                        <div class="col-6 col-lg-3 item-1" style = "margin-right: 20px;">
+                            <div class="count-data text-center">
+                                <i class="bi bi-camera-reels-fill" style="font-size: 4rem; color: #354855;"></i>
+                                <h6 class="count h2" data-to="500" data-speed="500">500</h6>
+                                <p class="m-0px font-w-600">Movies</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3 item-2" style = "margin-right: 20px;">
+                            <div class="count-data text-center">
+                                <i class="bi bi-tv-fill" style="font-size: 4rem; color: #354855; align-self: baseline;"></i>
+                                <h6 class="count h2" data-to="150" data-speed="150">150</h6>
+                                <p class="m-0px font-w-600">Shows</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3 item-3">
+                            <div class="count-data text-center">
+                               <i class="bi bi-file-earmark-play-fill" style="font-size: 4rem; color: #354855;"></i>
+                                <h6 class="count h2" data-to="850" data-speed="850">850</h6>
+                                <p class="m-0px font-w-600">Playlists</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
           </div>
           <div class="col-lg-6">
-              <div class="about-avatar" >
-                  <img [src]="img ? img : 'https://bootdey.com/img/Content/avatar/avatar7.png'" title="" alt="">
-                  
+              <div class="about-avatar">
+                  <img [src]="img ? img : '../../../assets/img/groot.png'" title="" alt="default image of groot">    
                   <input #imageInput type='file' accept="image/*" (change)="processFile(imageInput, userDetails.email)" class="select-profile-picture">
                   <span class="message">Tap here to select your picture</span>
               </div>
           </div>
       </div>
-      <div class="counter">
-          <div class="row">
-              <div class="col-6 col-lg-3">
-                  <div class="count-data text-center">
-                      <h6 class="count h2" data-to="500" data-speed="500">500</h6>
-                      <p class="m-0px font-w-600">Happy Clients</p>
-                  </div>
-              </div>
-              <div class="col-6 col-lg-3">
-                  <div class="count-data text-center">
-                      <h6 class="count h2" data-to="150" data-speed="150">150</h6>
-                      <p class="m-0px font-w-600">Project Completed</p>
-                  </div>
-              </div>
-              <div class="col-6 col-lg-3">
-                  <div class="count-data text-center">
-                      <h6 class="count h2" data-to="850" data-speed="850">850</h6>
-                      <p class="m-0px font-w-600">Photo Capture</p>
-                  </div>
-              </div>
-              <div class="col-6 col-lg-3">
-                  <div class="count-data text-center">
-                      <h6 class="count h2" data-to="190" data-speed="190">190</h6>
-                      <p class="m-0px font-w-600">Telephonic Talk</p>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+      <div class="about-text go-to">
+        <h3 class="dark-color" style = "margin-left: 22px;">About Me</h3>
+        <p class = "bio" *ngIf = "bio.length>0" style = "margin-left: 25px;">{{bio}} </p>
+        <div class="about-text go-to edit" style = "margin-bottom: 20px; ">
+                <button class = "edit-button" style = "background: none; border: none" (click)="buttonClicked()"><i class="bi bi-pencil-fill" style="margin-left: 25px; font-size: 2rem; 
+                color: #354855; font-size: small; text-decoration-line:underline; margin-right: 10px;" > edit bio</i></button>
+        </div>
+        <div class = "bio-input" *ngIf = "!isClicked">
+        <form class="form-group"  (ngSubmit)="onSubmit()" #form="ngForm">
+            <textarea class="form-control" id="exampleFormControlTextarea3" rows="7" style="margin-left: 25px; font-family: 'Roboto';"></textarea>
+            <div><button class = "button-primary" type="submit" style="margin-left: 25px; font-family: 'Righteous'; background-color: #354855;">Save</button></div> 
+        </form>
+    </div>
+    </div>
+    <div class="about-text go-to">
+        <h3 class="dark-color" style = "margin-left: 22px;">My Playlists</h3>
+        <p class = "bio" *ngIf = "bio.length>0" style = "margin-left: 25px;">{{bio}} </p>
+        <div class="about-text go-to edit" style = "margin-bottom: 20px; ">
+                <button class = "edit-button" style = "background: none; border: none" ><i class="bi bi-plus-circle-fill" style="margin-left: 25px; margin-right: 10px; font-size: 2rem; 
+                color: #354855; font-size: small; text-decoration-line:underline; " > add playlist</i></button>
+        </div>
+    </div>
+      
 </section>
 
-
 </div>
+</div>
+
+<div class = "footer">
+  <app-footer></app-footer>
 </div>
 
 <div class = "footer">
