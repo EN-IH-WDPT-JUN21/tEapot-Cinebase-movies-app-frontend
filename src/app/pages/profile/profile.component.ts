@@ -86,6 +86,7 @@ export class ProfileComponent implements OnInit {
         }
       },
     );
+    this.isClicked=false;
   }
 
 
