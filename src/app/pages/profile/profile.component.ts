@@ -10,6 +10,20 @@ class ImageSnippet {
   constructor(public src: string, public file: File) {}
 }
 
+export class UserStats{
+  playlistsCount: number;
+  titlesCount: number;
+  avgTitlesInPlaylist: number;
+  maxTitlesInPlaylist: number;
+
+  constructor() {
+      this.playlistsCount = 0;
+      this.titlesCount = 0;
+      this.avgTitlesInPlaylist = 0;
+      this.maxTitlesInPlaylist = 0;
+  }
+}
+
 
 @Component({
   selector: 'app-profile',
@@ -34,10 +48,13 @@ export class ProfileComponent implements OnInit {
   form!: NgForm;
   isClicked: boolean = false;
   isImageLoading: boolean = false;
+  userStats: UserStats;
+
   
   constructor(public auth: AuthService, private userService: UserServiceService, private httpClient: HttpClient, private imageService: ImageService) {
     this.userDetails= localStorage.UserDetails;
       this.bio=this.userDetails.bio;
+      this.userStats=new UserStats();
   }
 
   ngOnInit(): void {
@@ -72,6 +89,12 @@ export class ProfileComponent implements OnInit {
             );
           }
           });
+
+        this.userService.getUserStats(tempDetails.email).subscribe(
+          (data) => {
+            this.userStats=data;
+          }
+        );
         if( this.userDetails.imageId!=null && this.userDetails.imageId!=0){
           this.getImageFromService(this.userDetails.imageId);
         }
@@ -184,5 +207,8 @@ export class ProfileComponent implements OnInit {
 
   }
 
+  logout(): void {
+    this.auth.logout({ returnTo: "/home" });
+  }
 
 }

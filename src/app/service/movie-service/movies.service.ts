@@ -49,7 +49,7 @@ export class MoviesService {
   fetchMediaById(id: string): Observable<any> {
     console.log(`fetch media: ${id}`);
     return this.http.get<iCompleteMedia>(this.baseUrl+ '/Title/' + this.apiKey + '/' + id)
-    .map(rawData => this.mapCompleteMedia(rawData))
+    .map((rawData: iCompleteMedia) => this.mapCompleteMedia(rawData))
     .publish()
     .refCount();
   }
