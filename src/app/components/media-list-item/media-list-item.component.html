@@ -1,10 +1,11 @@
 <div *ngIf='media$ | async as media' class="container media">
-    <p>{{media.title}}</p>
     <img src="{{media.image}}"/>
+    <p>{{media.title}}</p>
     <button class="btn btn-secondary" (click)="removeMedia(position)">Remove</button>
+    
 </div>
+<hr class="solid">
 
-<div class = "footer">
-    <app-footer></app-footer>
-    </div>
+
+
   

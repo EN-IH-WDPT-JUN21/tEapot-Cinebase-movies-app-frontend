@@ -13,10 +13,14 @@ const mediaCacheObject: { [key: string]: CompleteMedia } = {};
 })
 export class MoviesService {
 
+  //Alternative apis
   // k_sg6g9gql
   // k_kf0sb0c0
+  //k_sg6g9gql
+  //k_uf7olahv
+  
 
-  private readonly apiKey='k_lvrir25s';
+  private readonly apiKey='k_rdpl6ohr';
   private readonly baseUrl = 'https://imdb-api.com/en/API';
   
   constructor(private http: HttpClient) { }

@@ -1,4 +1,11 @@
+<div class = "container">
 <h1  *ngIf='playlist'>{{playlist.name}}</h1>
-<div *ngIf='playlist' class="container d-flex justify-content-around flex-wrap">
+<div *ngIf='playlist' class="item ">
     <app-media-list-item *ngFor="let media of playlist.movies; let id = index" class="media" [position]="id" [simpleMedia]="media" (mediaRemoved)="removeMedia($event)"></app-media-list-item>
+   
 </div>
+</div>
+
+<div class = "footer">
+    <app-footer></app-footer>
+    </div>
