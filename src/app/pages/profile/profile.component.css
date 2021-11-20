@@ -3,7 +3,10 @@ p {
     color: #354855;
   }
   
-
+.bio{
+  background-color: transparent;
+  border: none;
+}
   
   img {
     height: 200px;
@@ -24,6 +27,7 @@ p {
   }
   
   .message {
+    font-family: 'Roboto';
     position: absolute;
     width: 90%;
     top: 50%;
@@ -37,14 +41,18 @@ p {
   .image-container:hover .message {
     transform: translate(-50%, -50%);
     opacity: 1;
+    background: rgba(229, 229, 229, 0.83);
   }
 
-  .container-fluid, .container{
+  .container{
     background:rgba(229, 229, 229, 0.83);
     padding: 20px;
     max-width: 1140px;
+    min-height: 650px;
    
 }
+
+
 .footer {
   position: sticky;
   position: -webkit-sticky;
@@ -75,7 +83,53 @@ h1{
   font-family: Righteous;
   font-style: normal;
   font-weight: normal;
-  font-size: 36px;
-  line-height: 45px;
+  font-size: 26px;
+  line-height: 32px;
   color: #553542;
+  margin-bottom: 40px;
+}
+
+.row{
+  display: flex;
+  max-width: 1140px;
+  justify-content: space-between;
+}
+
+.col-md-6 {
+  float: right;
+  width: max-content;
+  margin-right: 20px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.about-list {
+  float: right;
+  margin-right: 20px;
+}
+
+.counter{
+  min-width: max-content;
+  font-family: 'Roboto';
+  color: #354855;
+  margin-top: 30px;
+}
+
+.stats {
+  min-width: 310px;
+  justify-content: space-evenly;
+  margin-right: 20px;
+}
+
+.bio {
+  box-sizing: border-box;
+  width: 100%;
+  border: solid #9eb2be 0.5px;
+  padding: 5px;
+  border-radius: 5px;
 }

@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { Movie } from 'src/app/models/movie.model';
 import { MoviesService } from 'src/app/service/movie-service/movies.service';
 import testFilms from './mock-files/testFilms.json';
@@ -9,16 +9,16 @@ import testTvShows from './mock-files/testTvSeries.json';
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.css']
 })
-export class MovieListComponent implements OnInit {
+export class MovieListComponent implements OnInit, AfterViewInit {
 
-  private readonly mock = true; // Remove before submit the project 
+  private readonly mock = false; // Remove before submit the project 
 
   listOfMovies: any[];
   loading = true;
   filmsEnabled = true;
   searchString: string = '';
 
-  constructor(private movieService: MoviesService) {
+  constructor(private movieService: MoviesService, private elementRef: ElementRef) {
     this.listOfMovies = [];
   }
 
@@ -26,7 +26,8 @@ export class MovieListComponent implements OnInit {
     this.getFilms();
   }
 
-   getFilms():void {                      // Remove before submit the project 
+   getFilms():void {       
+    if (!this.mock) {     // Remove before submit the project  
       this.movieService.getFilms().subscribe(
          result => {
           console.log(result.items);
@@ -34,9 +35,14 @@ export class MovieListComponent implements OnInit {
           this.loading = false;
         }
       )
+    } else {
+      this.listOfMovies = testFilms.items;
+      this.loading = false;
+    }
   }
 
-   getTvSeries(): void {                // Remove before submit the project 
+   getTvSeries(): void {           
+    if (!this.mock) {     // Remove before submit the project  
       this.movieService.getTvSeries().subscribe(
          result => {
           console.log(result.items);
@@ -44,6 +50,10 @@ export class MovieListComponent implements OnInit {
           this.loading = false;
         }
       )
+    } else {
+      this.listOfMovies = testTvShows.items;
+      this.loading = false;
+    }
   }
 
   filterFilms(): void {
@@ -106,4 +116,9 @@ export class MovieListComponent implements OnInit {
     }
 
   }
+
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.ownerDocument
+        .body.style.backgroundImage = 'url("assets/img/screen_wide.png")';
+}
 }

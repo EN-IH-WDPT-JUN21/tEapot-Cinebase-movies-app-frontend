@@ -1,6 +1,8 @@
 <h1>Playlists</h1>
-<div class="container">
-    <div *ngFor="let playlist of playlistList;" (click)="goToOwnedList(playlist.id)">
+<div class="container d-flex justify-content-around flex-wrap">
+    <div class="playlist" *ngFor="let playlist of playlistList; let id = index" (click)="goToOwnedList(playlist.id)">
         {{playlist.name}}
+        <br/>
+        <button class="btn btn-secondary" (click)="removePlaylist(id);$event.stopPropagation()">Remove playlist</button>
     </div>
 </div>

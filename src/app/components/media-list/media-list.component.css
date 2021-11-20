@@ -1,6 +1,5 @@
-.playlist {
-    width: 100%;
-    display: flexbox;
-    justify-content: space-around;
-    flex-flow: row wrap;
+.media {
+    background-color:rgba(229, 229, 229, 0.83);
+    width: 300px;
+    text-align: center;
 }

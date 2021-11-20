@@ -1,13 +1,12 @@
 <div class="modal-header">
-
-
       <h4 class="modal-title">{{movie.title}}</h4>
       <span class="badge rounded-pill bg-warning text-dark">{{movie.runtimeStr}}
       </span>
-
+  
 
   <button type="button" class="btn-close btn-sm" (click)="activeModal.dismiss('Cross click')">
   </button>
+
 </div>
 <div class="modal-body">
   <div class="row">
@@ -28,13 +27,35 @@
       <div><small *ngIf="movie.year"><span class="movieParam">Written</span> by {{movie.writers}}</small></div>
       <div><small *ngIf="movie.year"><span class="movieParam">Stars:</span> {{movie.stars}}</small></div>
       <div><small *ngIf="movie.year"><span class="movieParam">Awards:</span> {{movie.awards}}</small></div>
-      <div><small *ngIf="movie.year"><a target="_blank" href="https://www.imdb.com/title/{{movie.id}}"><span>>>> Find more on IMDd</span></a></small></div>
-      
+      <div><small *ngIf="movie.year"><a target="_blank" href="https://www.imdb.com/title/{{movie.id}}"> <span class="badge bg-info bg-dark">Find out more on IMDd</span> </a></small></div>
 
     </div>
   </div>
 </div>
+
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-danger">ADD TO PLAYLIST</button>
+
+
+  <!-- <button type="button" class="btn btn-outline-danger" style = "font-family: 'Roboto';">ADD TO PLAYLIST</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')" style = "font-family: 'Roboto';">Close</button> -->
+
+  
+  <div class="form-check form-switch mt-1 float-left" *ngIf="auth.isAuthenticated$ | async" > <!---->
+    <input class="form-check-input" type="checkbox" [(ngModel)]="isPlaylist" >
+    <label class="form-check-label">Add to playlist</label>
+  </div>
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+
+      <div class="input-group mb-3" *ngIf="isPlaylist  && (auth.isAuthenticated$ | async)"><!---->
+        <select  class="form-select" [(ngModel)]="selectedPlaylistId">
+          <option selected value="0">Choose playlist...</option>
+          <option *ngFor="let playlist of userPlaylist" [ngValue]="playlist.id">{{playlist.name}}</option>
+        </select>
+        <div class="input-group-append">
+          <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addToPlaylist()">Add to playlist</button>
+        </div>
+      </div>
+      
+
+
 </div>

@@ -1,10 +1,28 @@
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import UserDetails from 'src/app/models/user-details.model';
 import { UserServiceService } from 'src/app/service/user-service/user-service.service';
+import { ImageService } from 'src/app/service/image-service/image-service.service';
+import { NgForm } from '@angular/forms';
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
 
+export class UserStats{
+  playlistsCount: number;
+  titlesCount: number;
+  avgTitlesInPlaylist: number;
+  maxTitlesInPlaylist: number;
 
+  constructor() {
+      this.playlistsCount = 0;
+      this.titlesCount = 0;
+      this.avgTitlesInPlaylist = 0;
+      this.maxTitlesInPlaylist = 0;
+  }
+}
 
 
 @Component({
@@ -13,86 +31,184 @@ import { UserServiceService } from 'src/app/service/user-service/user-service.se
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+  @Input() src: any;
+  @Input() bioInput: any;
+  @ViewChild('form')
   restoredSession: any;
   profileJson!: string;
-  name = 'Angular 4';
   email!: string;
+  img:any;
   username!: string;
-  bio!: string;
+  bio: string;
   id!: number;
-  url!: any;
   user!: AuthService["user$"];
-  userDetails!: UserDetails;
+  userDetails: UserDetails;
+  selectedFile!: ImageSnippet;
+  imageId!: number;
+  form!: NgForm;
+  isClicked: boolean = false;
+  isImageLoading: boolean = false;
+  userStats: UserStats;
 
   
-
-  constructor(public auth: AuthService, private userService: UserServiceService, private httpClient: HttpClient) {
-    this.name = 'Unregistered User';
-    this.email = "";
-    this.username = '';
-    this.userDetails= new UserDetails("", "", "", "");
+  constructor(public auth: AuthService, private userService: UserServiceService, private httpClient: HttpClient, private imageService: ImageService) {
+    this.userDetails= localStorage.UserDetails;
+      this.bio=this.userDetails.bio;
+      this.userStats=new UserStats();
   }
 
   ngOnInit(): void {
+    //GET AUTHENTICATION
     this.auth.user$.subscribe(
       (profile) => {
-        var test= JSON.stringify(profile, null, 2);
-        this.profileJson = JSON.stringify(profile, null, 2);
-        localStorage.setItem('profile', JSON.stringify(profile, null, 2)); 
-      }
-    );
-    this.restoredSession = JSON.parse(localStorage.getItem('profile')!);
-    this.userDetails.username=this.restoredSession.nickname;
-    this.userDetails.email=this.restoredSession.email;
-    this.userDetails.bio=this.restoredSession.bio;
-    this.userDetails.image=this.restoredSession.picture;
 
-    this.email = this.restoredSession.email;
-    this.userService.getUserDetails(this.restoredSession.email).subscribe(
-      (data) => {
-        const databaseResponse=new UserDetails( data.email, data.username, data.bio, data.image);
-     });
+        localStorage.setItem('profile', JSON.stringify(profile, null, 2)); 
+        let tempDetails=JSON.parse(localStorage.getItem('profile')!);
+        this.userService.getUserDetails(tempDetails.email).subscribe(
+          (data) => {
+              if( data!="" && data!=null){
+              this.userDetails=data;
+              localStorage.setItem('UserDetails', JSON.stringify(this.userDetails));
+              if(this.userDetails.imageId!=null){
+                this.getImageFromService(this.userDetails.imageId);
+              }
+              if(this.userDetails.bio!=null && this.userDetails.bio!=""){
+                this.bio=this.userDetails.bio;
+              }
+              }
+              else{
+              tempDetails.username=tempDetails.nickname;
+              this.userService.postUserDetails(tempDetails).subscribe(
+                  (data) => {
+                          this.userDetails=data;
+                          if(this.userDetails.username==null){
+                             this.userDetails=tempDetails.nickname;
+                            }
+                  localStorage.setItem('UserDetails', JSON.stringify(this.userDetails));
+                },
+            );
+          }
+          });
+
+        this.userService.getUserStats(tempDetails.email).subscribe(
+          (data) => {
+            this.userStats=data;
+          }
+        );
+        if( this.userDetails.imageId!=null && this.userDetails.imageId!=0){
+          this.getImageFromService(this.userDetails.imageId);
+        }
+        this.userDetails=localStorage.UserDetails,
+        this.username=localStorage.UserDetails.username,
+        this.email=localStorage.UserDetails.email,
+        this.bio=localStorage.UserDetails.bio,
+        this.imageId=localStorage.UserDetails.imageId
+        if(this.userDetails.imageId!=null && this.userDetails.imageId!=0){
+        }
+      },
+    );
+
   }
 
 
+     buttonClicked(){
+      this.isClicked = !this.isClicked;
+     }
 
-
- 
-
-
-
-    public test(email: string){
-      console.log("input value for email: " + email)
-      this.userService.getUserDetails(email).subscribe(
-        (data2: UserDetails) => {
-          const databaseResponse: UserDetails = data2;
-          console.log("response bio from request: "+databaseResponse.bio);
-       }
-      );
-      this.userService.postUserDetails(this.userDetails).subscribe(
-        (data2: UserDetails) => {
-         let databaseResponse: UserDetails = data2;
-          console.log("response for random bio from request: "+databaseResponse.bio);
-       }
-      );
+     public onSubmit(variable: any) {
+      this.userDetails.bio=variable.updatedBio;
+      this.updateUserDetails(this.userDetails.email, this.userDetails);
+      this.isClicked = false;
     }
 
-    public getUserDetailsFromDB(){
-     return this.userService.getUserDetails(this.restoredSession.nickname).subscribe(
-       (data) => {
-         const databaseResponse=new UserDetails( data.email, data.username, data.bio, data.image);
-         this.userDetails = databaseResponse;
-         console.log("user_details " + this.userDetails.email);
-      });
+
+
+
+
+    public getUserDetails(details: UserDetails): UserDetails{
+      this.userService.getUserDetails(details.email).subscribe(
+        (data) => {
+          details.id=data.id;
+          details.username=data.username;
+          details.email=data.email;
+          details.bio=data.bio;
+          details.imageId=data.imageId;
+       });
+       return details;
        }
 
 
     public updateUserDetails(email: string, userDetails: UserDetails){
-      return this.userService.updateUserDetails(email, userDetails).subscribe(
+      this.userService.updateUserDetails(email, userDetails).subscribe(
         (data) => {
-          const databaseResponse: UserDetails = data;
-       });
-        }
+          this.userService.getUserDetails(email).subscribe(
+            (data) => {
+              this.id=data.id;
+              this.username=data.username;
+              this.email=data.email;
+              this.bio=data.bio;
+              this.userDetails.id=data.id;
+              this.userDetails.username=data.name;
+              this.userDetails.email=data.email;
+              this.userDetails.bio=data.bio;
+              this.userDetails.imageId=data.image;
+              localStorage.UserDetails=JSON.stringify(this.userDetails);
+           });
+          }
+      )
+
+      }
+
+
+      processFile(imageInput: any,  email: string) {
+        const file: File = imageInput.files[0];
+        const reader = new FileReader();
+        reader.addEventListener('load', (event: any) => {
+    
+          this.selectedFile = new ImageSnippet(event.target.result, file);
+          this.imageService.uploadImage(this.selectedFile.file,  email).subscribe(
+            (res) => {
+              this.getImageFromService(res);
+              this.userDetails.imageId=res.valueOf();
+              localStorage.UserDetails.userDetails;
+            },
+            (err) => {
+            
+            })
+        });
+    
+        reader.readAsDataURL(file);
+
+      }
+
+
+    createImageFromBlob(image: Blob) {
+      let reader = new FileReader();
+      reader.addEventListener("load", () => {
+          this.img = reader.result;
+      }, false);
+
+      if (image) {
+        reader.readAsDataURL(image);
+        this.img=reader.result;
+      }
+    }
+
+  getImageFromService(imageId: number) {
+      this.isImageLoading = true;
+      this.imageService.getImage(imageId).subscribe(data => {
+      this.createImageFromBlob(data);
+      this.isImageLoading = false;
+      }, 
+      error => {
+        this.isImageLoading = false;
+        console.log(error);
+    });
+
+  }
+
+  logout(): void {
+    this.auth.logout({ returnTo: "/home" });
+  }
 
 }

@@ -1,15 +1,19 @@
+<<<<<<< HEAD
 import { CompleteMedia } from './../../models/complete-media.models';
+import { MoviesService } from 'src/app/service/movie-service/movies.service';
+=======
 import { SimplifiedMedia } from './../../models/simplified-media.models';
 import { AuthService } from '@auth0/auth0-angular';
 import { Playlist } from './../../models/playlist.models';
+import { MoviesService } from 'src/app/services/movie-service/movies.service';
+>>>>>>> 79b93a4a4811c58c14f30f5a68c6c04187d5bd20
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieDetail } from 'src/app/models/movie-detail.model';
 import testFilmsItemDetail from './../movie-list/mock-files/testFilmsItemDetail.json';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { MediaService } from 'src/app/service/media/media.service';
+import { MediaService } from 'src/app/services/media/media.service';
 import userPlayListData from './mock-files/userPlayListData.json';
-import { MoviesService } from 'src/app/service/movie-service/movies.service';
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html',

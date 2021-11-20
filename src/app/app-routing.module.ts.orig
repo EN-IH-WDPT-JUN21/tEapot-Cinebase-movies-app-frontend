@@ -34,15 +34,25 @@ const routes: Routes = [
 
   {
     path: 'playlist/:playlistId',
+<<<<<<< HEAD
     component: MediaListComponent,
     canActivate: [AuthGuard],
   },
+=======
+    component: MediaListComponent
+
+  },  
+>>>>>>> 79b93a4a4811c58c14f30f5a68c6c04187d5bd20
   {
 
     path: '**',
     component: PageNotFoundComponent,
+<<<<<<< HEAD
    }
-
+=======
+   },
+  
+>>>>>>> 79b93a4a4811c58c14f30f5a68c6c04187d5bd20
 
 ];
 

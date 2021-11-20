@@ -1,28 +1,29 @@
 <div class="container-sm">
     <div class="input-group">
-        <div class="input-group-append">
+        <!-- <div class="input-group-append">
             <span class="input-group-text">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewBox="0 0 16 16">
                     <path
                         d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                 </svg>
             </span>
-        </div>
-        <input type="text" [(ngModel)]="searchString" class="form-control" placeholder="Search movie"
+        </div> -->
+        <input type="text" [(ngModel)]="searchString" class="form-control" placeholder="try typing here what you're looking for..."
             aria-label="Search movie" aria-describedby="basic-addon2" (keyup.enter)="filterResults()">
         <div class="input-group-append">
             <button class="btn btn-light" width="25" height="25" fill="currentColor" viewBox="0 0 16 16"
-                (click)="filterResults()">Filter</button>
+                (click)="filterResults()" style = "font-family: 'Righteous'; color: lightyellow; background-color: #354855;
+                border-style: none; margin-right: 70px;">Search</button>
         </div>
     </div>
     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
         <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked
             (click)="enableFilms()" (keyup.enter)="filterResults()">
-        <label class="btn btn-outline-primary btn-sm" for="btnradio1">Films</label>
+        <label class="btn btn-outline-dark btn-sm" for="btnradio1">Films</label>
 
         <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
             (click)="enableTvSeries()" (keyup.enter)="filterResults()">
-        <label class="btn btn-outline-primary btn-sm" for="btnradio2">TV Series</label>
+        <label class="btn btn-outline-dark btn-sm" for="btnradio2">TV Series</label>
 
     </div><br>
     <div *ngIf="loading else loaded" style="text-align: center;">
@@ -32,8 +33,17 @@
     </div>
 
     <ng-template #loaded>
-        <ul class="list-group list-group-flush">
-            <app-movie-item *ngFor="let movie of listOfMovies" [movie]="movie"></app-movie-item>
+        <ul class="list-group list-group-flush" style="margin-left: 40px; margin-right: 70px; ">
+            <app-movie-item *ngFor="let movie of listOfMovies" [movie]="movie" ></app-movie-item>
         </ul>
+        <p *ngIf="listOfMovies.length < 1">No results. Search for something meaningful</p>
     </ng-template>
+</div>
+
+<div class = "footer" *ngIf = "listOfMovies.length>=4">
+<app-footer></app-footer>
+</div>
+
+<div *ngIf = "listOfMovies.length<4">
+    <app-footer></app-footer>
 </div>

@@ -2,87 +2,126 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div *ngIf="auth.user$ | async as user" (onload)="getUserDetailsFromDB()">
-<div class="container-fluid">
-  <div class="row">
-    <div class="fb-profile">
-        <!-- <img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
 
-        <button (click)="test()">test buttn</button> -->
-        <div class="fb-profile-text" stayle="margin-left: 40px;">
-          <h1>{{username | uppercase}}</h1> 
-        </div>
+    
+<!-- /container fluid-->  
 
-
-        <div class="fb-profile-text">
-            <h1>{{username}}</h1>
-            
-
-        </div>
-    </div>
-  </div>
-</div> <!-- /container fluid-->  
 <div class="container">
   <div class="col-sm-8">
 
-      <div data-spy="scroll" class="tabbable-panel">
-        <div class="tabbable-line">
-          <ul class="nav nav-tabs ">
-            <li class="active">
-              <a href="#tab_default_1" data-toggle="tab">
-              About me </a>
-            </li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="tab_default_1">
-              here will be user bio
-              {{user.bio}}
-              
-              <div class="row" *ngIf="profileJson">
-                <pre class="col-12 text-light bg-dark p-4">{{ profileJson }}</pre>
-              </div>
-           
-            </div>
-              <div class="tab-pane" id="tab_default_3">
-                </div>
-                  <div class="tab-pane" id="tab_default_4">
-                      <div class="col-sm-6">
+<section id="about" *ngIf="auth.user$ | async as user" (onload)="getUserDetails(userDetails)" >
+    <div class="name" >
+        <h1>{{user.nickname| uppercase}}</h1>
+
+
+    </div>
+    
+      <div class="row flex-row-reverse">
+          <div class="col-lg-6 upper">
+            <div class = "profile-info" style = "margin-bottom: 40px;">
+                  <div class="row about-list" style="margin-right: 60px;">
+                   
+                    
+
+                      <div class="col-md-6">
+                          <div class="media">
+                              <label>E-mail</label>
+                              <p>{{user.email}}</p>
+                          </div>
+                          <div class="media">
+                              <label>Email Verified:</label>
+                              <p *ngIf = "user.email_verified" style = "color: green;">Yes</p>
+                              <p *ngIf = "!user.email_verified" style = "color: #553542;">Pending</p>
+                          </div>
+                          <div class="media">
+                              <label>Last update </label>
+                              <p>{{user.updated_at | date: 'mediumDate'}}</p>
+                          </div>
                       </div>
                   </div>
+                  <div class="counter">
+                    <div class="stats">
+                        <div class="col-6 col-lg-3 item-3">
+                            <div class="count-data text-center">
+                               <i class="bi bi-collection-play-fill" style="font-size: 4rem; color: #354855;"></i>
+                                <h6 class="count h2" data-to="850" data-speed="850">{{userStats.playlistsCount}}</h6>
+                                <p class="m-0px font-w-600">Playlists</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3 item-1" style = "margin-right: 20px;">
+                            <div class="count-data text-center">
+                                <i class="bi bi-camera-reels-fill" style="font-size: 4rem; color: #354855;"></i>
+                                <h6 class="count h2" data-to="500" data-speed="500">{{userStats.titlesCount}}</h6>
+                                <p class="m-0px font-w-600">Titles</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3 item-1" style = "margin-right: 20px;">
+                            <div class="count-data text-center">
+                                <i class="bi bi-file-earmark-break-fill" style="font-size: 4rem; color: #354855;"></i>
+                                <h6 class="count h2" data-to="500" data-speed="500">{{userStats.avgTitlesInPlaylist}}</h6>
+                                <p class="m-0px font-w-600">Average of titles in playlist</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3 item-2" style = "margin-right: 20px;">
+                            <div class="count-data text-center">
+                                <i class="bi bi-file-earmark-play-fill" style="font-size: 4rem; color: #354855; align-self: baseline;"></i>
+                                <h6 class="count h2" data-to="150" data-speed="150">{{userStats.maxTitlesInPlaylist}}</h6>
+                                <p class="m-0px font-w-600">Highest number of titles in playlist</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                </div>
+          </div>
+          <div class="col-lg-6">
+              <div class="about-avatar">
+                  <img [src]="img ? img : '../../../assets/img/groot.png'" title="" alt="default image of groot">    
+                  <input #imageInput type='file' accept="image/*" (change)="processFile(imageInput, userDetails.email)" class="select-profile-picture">
+                  <span class="message">Tap here to select your picture</span>
               </div>
-            </div>
-  
-  </div>
-  <div class="col-sm-4">
-   <div class="panel panel-default">
-    <div class="menu_title">
-       Account details
+          </div>
+      </div>
+      <div class="about-text go-to">
+        <h3 class="dark-color" style = "margin-left: 22px;">About Me</h3>
+
+        <p class = "bio"  style = "margin-left: 25px;">{{bio}} </p>
+
+        <div class="about-text go-to edit" style = "margin-bottom: 20px; ">
+                <button class = "edit-button" style = "background: none; border: none" (click)="buttonClicked()"><i class="bi bi-pencil-fill" style="margin-left: 25px; font-size: 2rem; 
+                color: #354855; font-size: small; text-decoration-line:underline; margin-right: 10px;" > edit bio</i></button>
+        </div>
+
+        <div class = "bio-input" *ngIf = "isClicked">
+        <form class="form-group"  (ngSubmit)="onSubmit(updatedBio.value)" #updatedBio="ngForm" >
+            <input type="text" class="form-control" name="updatedBio" id="exampleFormControlTextarea3" rows="7" style="margin-left: 25px; font-family: 'Roboto';" ngModel>
+            <div><button class = "button-primary" type="ngSubmit" style="margin-left: 25px; font-family: 'Righteous'; background-color: #354855;">Save</button></div> 
+
+        </form>
     </div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-lg-12">
-                 <div class="form-group">
-                     <label for="email">Email: </label>
-                      <p> {{user.email}}</p>
-                 </div>
-                  <div class="form-group">
-                      <label for="email">Last update:</label>
-                      <p> {{user.updated_at}}</p>
-                  </div>
-                  <div class="form-group">
-                      <label for="email">Email verified:</label>
-                      <p> {{user.email_verified}}</p>
-                  </div>
-            </div>
+    </div>
+    <div class="about-text go-to">
+        <h3 class="dark-color" style = "margin-left: 22px;">My Playlists</h3>
+
+        <p class = "bio"  style = "margin-left: 25px;">playlists placeholder </p>
+
+        <div class="about-text go-to edit" style = "margin-bottom: 20px; ">
+                <button class = "edit-button" style = "background: none; border: none" ><i class="bi bi-plus-circle-fill" style="margin-left: 25px; margin-right: 10px; font-size: 2rem; 
+                color: #354855; font-size: small; text-decoration-line:underline; " > add playlist</i></button>
         </div>
     </div>
-</div>
-  </div>
+      
+</section>
 
 </div>
 </div>
+
 <div class = "footer">
   <app-footer></app-footer>
 </div>
+
+<div class = "footer">
+  <app-footer></app-footer>
+  </div>
+
+
 
