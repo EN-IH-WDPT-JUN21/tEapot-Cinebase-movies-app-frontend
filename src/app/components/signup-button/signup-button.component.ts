@@ -12,6 +12,9 @@ export class SignupButtonComponent implements OnInit {
   ngOnInit(): void {}
 
   loginWithRedirect(): void {
-    this.auth.loginWithRedirect({ screen_hint: 'signup' });
+    this.auth.loginWithRedirect({ 
+      screen_hint: 'signup',
+      appState: { target: '/profile'} 
+    });
   }
 }
