@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MovieDetail } from 'src/app/models/movie-detail.model';
 import testFilmsItemDetail from './../movie-list/mock-files/testFilmsItemDetail.json';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { MediaService } from 'src/app/services/media/media.service';
+import { MediaService } from 'src/app/service/media/media.service';
 import userPlayListData from './mock-files/userPlayListData.json';
 @Component({
   selector: 'app-movie-detail',

@@ -1,4 +1,4 @@
-import { MediaService } from './../../services/media/media.service';
+import { MediaService } from '../../service/media/media.service';
 import { CompleteMedia, iCompleteMedia } from './../../models/complete-media.models';
 import { Playlist } from '../../models/playlist.models';
 

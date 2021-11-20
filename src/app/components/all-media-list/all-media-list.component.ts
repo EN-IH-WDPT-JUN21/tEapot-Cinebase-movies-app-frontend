@@ -1,5 +1,5 @@
 import { Playlist } from '../../models/playlist.models';
-import { MediaService } from '../../services/media/media.service';
+import { MediaService } from '../../service/media/media.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
