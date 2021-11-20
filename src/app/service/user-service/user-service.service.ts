@@ -1,7 +1,7 @@
 import UserDetails  from 'src/app/models/user-details.model';
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +22,11 @@ export class UserServiceService {
       return this.http.get<any>(this.baseURL + '/users/'+email);
     }
     postUserDetails(userDetails: UserDetails) : Observable<any> {
+
       return this.http.post<any>(this.baseURL + '/users', userDetails);
     }
     updateUserDetails(email: string, userDetails: UserDetails) : Observable<any> {
       return this.http.put<any>(this.baseURL + '/users/' + email, userDetails);
     }
 }
+

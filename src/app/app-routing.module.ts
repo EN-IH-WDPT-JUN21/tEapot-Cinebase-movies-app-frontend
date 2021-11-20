@@ -31,6 +31,7 @@ const routes: Routes = [
     component: AllMediaListComponent,
     canActivate: [AuthGuard],
   },
+
   {
     path: 'playlist/:playlistId',
     component: MediaListComponent,
@@ -41,6 +42,7 @@ const routes: Routes = [
     path: '**',
     component: PageNotFoundComponent,
    }
+
 
 ];
 

@@ -16,7 +16,7 @@ export class MoviesService {
   // k_sg6g9gql
   // k_kf0sb0c0
 
-  private readonly apiKey='k_sg6g9gql';
+  private readonly apiKey='k_lvrir25s';
   private readonly baseUrl = 'https://imdb-api.com/en/API';
   
   constructor(private http: HttpClient) { }
@@ -46,7 +46,6 @@ export class MoviesService {
     console.log(mediaCacheObject[id]);
     return Observable.of(mediaCacheObject[id]);
   }
-
   fetchMediaById(id: string): Observable<any> {
     console.log(`fetch media: ${id}`);
     return this.http.get<iCompleteMedia>(this.baseUrl+ '/Title/' + this.apiKey + '/' + id)
@@ -54,7 +53,6 @@ export class MoviesService {
     .publish()
     .refCount();
   }
-
   private mapCompleteMedia(body: iCompleteMedia) {
     return new CompleteMedia(body);
   }

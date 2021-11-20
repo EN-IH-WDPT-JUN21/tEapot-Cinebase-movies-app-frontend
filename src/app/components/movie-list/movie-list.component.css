@@ -1,0 +1,27 @@
+.form-control{
+    font-family: 'Roboto';
+    color: lightslategray;
+    margin-left: 40px;
+}
+
+.btn-group{
+    margin-left: 40px;
+    margin-bottom: 40px;
+}
+
+
+
+p{
+    margin-left: 40px;
+    font-family: 'Roboto';
+    color: #354855;
+    background: rgba(229, 229, 229, 0.83);
+    width: fit-content;
+}
+
+.footer {
+    position: sticky;
+    position: -webkit-sticky;
+    left: 0;
+    bottom: 0;
+}
