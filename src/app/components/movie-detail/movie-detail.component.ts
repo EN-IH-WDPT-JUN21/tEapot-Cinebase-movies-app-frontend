@@ -2,7 +2,6 @@ import { CompleteMedia } from './../../models/complete-media.models';
 import { SimplifiedMedia } from './../../models/simplified-media.models';
 import { AuthService } from '@auth0/auth0-angular';
 import { Playlist } from './../../models/playlist.models';
-import { MoviesService } from 'src/app/services/movie-service/movies.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieDetail } from 'src/app/models/movie-detail.model';
@@ -10,6 +9,7 @@ import testFilmsItemDetail from './../movie-list/mock-files/testFilmsItemDetail.
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MediaService } from 'src/app/service/media/media.service';
 import userPlayListData from './mock-files/userPlayListData.json';
+import { MoviesService } from 'src/app/service/movie-service/movies.service';
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html',
