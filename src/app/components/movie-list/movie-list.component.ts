@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { Movie } from 'src/app/models/movie.model';
 import { MoviesService } from 'src/app/services/movie-service/movies.service';
 import testFilms from './mock-files/testFilms.json';
@@ -9,7 +9,7 @@ import testTvShows from './mock-files/testTvSeries.json';
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.css']
 })
-export class MovieListComponent implements OnInit {
+export class MovieListComponent implements OnInit, AfterViewInit {
 
   private readonly mock = false; // Remove before submit the project 
 
@@ -18,7 +18,7 @@ export class MovieListComponent implements OnInit {
   filmsEnabled = true;
   searchString: string = '';
 
-  constructor(private movieService: MoviesService) {
+  constructor(private movieService: MoviesService, private elementRef: ElementRef) {
     this.listOfMovies = [];
   }
 
@@ -116,4 +116,9 @@ export class MovieListComponent implements OnInit {
     }
 
   }
+
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.ownerDocument
+        .body.style.backgroundImage = 'url("assets/img/screen_wide.png")';
+}
 }
