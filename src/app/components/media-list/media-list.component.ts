@@ -2,7 +2,7 @@ import { MediaService } from '../../service/media/media.service';
 import { CompleteMedia, iCompleteMedia } from './../../models/complete-media.models';
 import { Playlist } from '../../models/playlist.models';
 
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -10,13 +10,15 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './media-list.component.html',
   styleUrls: ['./media-list.component.css']
 })
-export class MediaListComponent implements OnInit {
+export class MediaListComponent implements OnInit, AfterViewInit {
 
   playlist!: Playlist;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private mediaService: MediaService
+    private mediaService: MediaService,
+    private router: Router,
+    private elementRef: ElementRef
   ) { }
 
   ngOnInit(): void {
@@ -32,4 +34,13 @@ export class MediaListComponent implements OnInit {
     );
     console.log(mediaPosition);
   }
+
+  list(){
+    this.router.navigate(['playlists']);
+  }
+
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.ownerDocument
+        .body.style.backgroundImage = 'url("assets/img/screen_wide.png")';
+}
 }

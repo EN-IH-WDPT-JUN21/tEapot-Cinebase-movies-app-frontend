@@ -25,3 +25,12 @@ h1{
     color: #553542;
     margin-bottom: 40px;
   }
+
+  .btn-primary{
+    background-color: #354855;
+    color: aliceblue;
+    border-style: none;
+    font-family: 'Roboto';
+    margin-top: 40px;
+    margin-left: 20px;
+  }
