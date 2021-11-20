@@ -6,7 +6,7 @@
         <button class="btn remove" (click)="removePlaylist(id);$event.stopPropagation()">Remove</button>
         <hr class="solid">
     </div>
-    <button class="btn btn-primary" >Add playlist</button>
+    <app-add-playlist (playlistAdded)="addPlaylist($event)"></app-add-playlist>
 </div>
 
 <div class = "footer">
