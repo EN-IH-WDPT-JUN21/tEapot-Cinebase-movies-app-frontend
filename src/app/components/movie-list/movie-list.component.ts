@@ -1,7 +1,7 @@
 
 import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { Movie } from 'src/app/models/movie.model';
-import { MoviesService } from 'src/app/service/movie-service/movies.service';
+import { MoviesService } from 'src/app/services/movie-service/movies.service';
 import testFilms from './mock-files/testFilms.json';
 import testTvShows from './mock-files/testTvSeries.json';
 @Component({
@@ -11,7 +11,7 @@ import testTvShows from './mock-files/testTvSeries.json';
 })
 export class MovieListComponent implements OnInit, AfterViewInit {
 
-  private readonly mock = true; // Remove before submit the project 
+  private readonly mock = false; // Remove before submit the project 
 
   listOfMovies: any[];
   loading = true;

@@ -1,0 +1,24 @@
+[{
+    "id": 2,
+    "userId": 2,
+    "name": "My playlist",
+    "movies": []
+},
+{
+    "id": 3,
+    "userId": 2,
+    "name": "Second playlist",
+    "movies": []
+},
+{
+    "id": 4,
+    "userId": 2,
+    "name": "Best Movies",
+    "movies": []
+},
+{
+    "id": 5,
+    "userId": 2,
+    "name": "My TV Series",
+    "movies": []
+}]
