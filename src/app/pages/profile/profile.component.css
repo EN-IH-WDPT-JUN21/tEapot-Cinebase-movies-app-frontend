@@ -3,7 +3,10 @@ p {
     color: #354855;
   }
   
-
+.bio{
+  background-color: transparent;
+  border: none;
+}
   
   img {
     height: 200px;

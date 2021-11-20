@@ -6,14 +6,11 @@
 
 
 
-        <!-- <div class="fb-profile-text">
+        <div class="fb-profile-text">
             <h1>{{username}}</h1>
-            
+        </div>
 
-        </div> -->
-    </div>
-  </div>
-</div> <!-- /container fluid-->  
+ 
 <div class="container">
   <div class="col-sm-8">
 
@@ -24,7 +21,11 @@
           <div class="col-lg-6">
               <div class="about-text go-to">
                   <h3 class="dark-color">About Me</h3>
-                  <p>{{bio}}</p>
+                  <div>
+                <input #bioInput type='text' accept="text" (change)="updateBio(bioInput)" class="bio">
+                <br/>
+                  <p class="message">{{bio}}</p>
+                </div>
                   <div class="row about-list">
                       <div class="col-md-6">
                       </div>

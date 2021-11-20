@@ -19,6 +19,7 @@ class ImageSnippet {
 })
 export class ProfileComponent implements OnInit {
   @Input() src: any;
+  @Input() bioInput: any;
   restoredSession: any;
   profileJson!: string;
   email!: string;
@@ -88,13 +89,13 @@ export class ProfileComponent implements OnInit {
   }
 
 
-    public defaultImg: string = 'https://bootdey.com/img/Content/avatar/avatar7.png';
-    public onError() {
-        this.src = this.defaultImg;
-    }
-    public checkPath(src: any) {
-        return src ? src : this.defaultImg;
-    }
+    // public defaultImg: string = 'https://bootdey.com/img/Content/avatar/avatar7.png';
+    // public onError() {
+    //     this.src = this.defaultImg;
+    // }
+    // public checkPath(src: any) {
+    //     return src ? src : this.defaultImg;
+    // }
 
 
 
@@ -180,5 +181,10 @@ export class ProfileComponent implements OnInit {
         console.log(error);
     });
 
+  }
+
+  public updateBio(bioInput: any){
+    this.userDetails.bio=bioInput.value;
+    this.updateUserDetails(this.userDetails.email, this.userDetails);
   }
 }
