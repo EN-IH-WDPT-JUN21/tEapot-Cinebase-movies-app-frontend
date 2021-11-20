@@ -27,7 +27,9 @@ export class MediaListComponent implements OnInit {
   }
 
   removeMedia(mediaPosition: number): void {
-    this.mediaService.deleteMovie(this.playlist.id, this.playlist.movies[mediaPosition].imdbId);
+    this.mediaService.deleteMovie(this.playlist.id, this.playlist.movies[mediaPosition].imdbId).subscribe(
+      result => this.playlist = result
+    );
     console.log(mediaPosition);
   }
 }

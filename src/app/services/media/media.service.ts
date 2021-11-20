@@ -1,5 +1,5 @@
+import { Playlist } from './../../models/playlist.models';
 import { SimplifiedMedia } from '../../models/simplified-media.models';
-import { Playlist } from '../../models/playlist.models';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
@@ -26,20 +26,20 @@ export class MediaService {
   }
 
   createPlaylist(playlist: Playlist): void {
-    this.http.post<void>(`${this.baseUrl}`, playlist);
+    this.http.post<void>(`${this.baseUrl}`, playlist).subscribe();
   }
 
   updatePlaylist(id: number, media: SimplifiedMedia): void {
-    this.http.patch<void>(`${this.baseUrl}/${id}`, media);
+    this.http.patch<void>(`${this.baseUrl}/${id}`, media).subscribe();
   }
 
-  deleteMovie(playlistId: number, imdbId: string): void {
+  deleteMovie(playlistId: number, imdbId: string): Observable<Playlist> {
     console.log("Requesting delete of playlist " + playlistId + " and media " + imdbId);
     console.log(`${this.baseUrl}?playlistId=${playlistId}&imdbId=${imdbId}`);
-    this.http.delete<void>(`${this.baseUrl}?playlistId=${playlistId}&imdbId=${imdbId}`);
+    return this.http.delete<Playlist>(`${this.baseUrl}?playlistId=${playlistId}&imdbId=${imdbId}`);
   }
 
-  deletePlaylist(id: number): void {
-    this.http.delete<void>(`${this.baseUrl}/${id}`);
+  deletePlaylist(id: number): Observable<Playlist[]> {
+    return this.http.delete<Playlist[]>(`${this.baseUrl}/${id}`);
   }
 }
