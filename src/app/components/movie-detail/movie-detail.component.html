@@ -48,7 +48,7 @@
 
       <div class="input-group mb-3" *ngIf="isPlaylist  && (auth.isAuthenticated$ | async)"><!---->
         <select  class="form-select" [(ngModel)]="selectedPlaylistId">
-          <option selected value="0">Choose playlist...</option>
+          <option [ngValue]="0" selected value="0">Choose playlist...</option>
           <option *ngFor="let playlist of userPlaylist" [ngValue]="playlist.id">{{playlist.name}}</option>
         </select>
         <div class="input-group-append">
