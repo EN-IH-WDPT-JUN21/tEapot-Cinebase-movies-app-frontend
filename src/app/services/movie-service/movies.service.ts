@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class MoviesService {
 
-  private readonly apiKey='k_nzr2ahzg';
+  private readonly apiKey='';
   private readonly baseUrl = 'https://imdb-api.com/en/API';
   
   constructor(private http: HttpClient) { }
