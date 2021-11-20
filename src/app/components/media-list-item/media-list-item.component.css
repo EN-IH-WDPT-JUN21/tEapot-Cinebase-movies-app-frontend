@@ -1,3 +1,11 @@
+.container{
+    background:rgba(229, 229, 229, 0.83);
+    padding: 20px;
+    max-width: 1140px;
+    min-height: 650px;
+   
+}
+
 .media {
     width: 300px;
 }
@@ -5,3 +13,18 @@
 div img {
     max-width: 100px;
 }
+
+.btn{
+    background-color: #354855;
+    color: aliceblue;
+    border-style: none;
+    font-family: 'Roboto';
+    margin-left: 20px;
+  }
+
+  .footer {
+    position: sticky;
+    position: -webkit-sticky;
+    left: 0;
+    bottom: 0;
+  }

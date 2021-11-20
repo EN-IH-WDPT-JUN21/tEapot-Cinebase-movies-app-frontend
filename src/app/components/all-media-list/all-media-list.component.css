@@ -1,5 +1,40 @@
-.playlist {
-    background-color:rgba(229, 229, 229, 0.83);
-    width: 300px;
-    text-align: center;
+h1{
+    font-family: Righteous;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 26px;
+    line-height: 32px;
+    color: #553542;
+    margin-bottom: 40px;
+    margin-left: 20px;
+  }
+
+.container{
+    background:rgba(229, 229, 229, 0.83);
+    padding: 20px;
+    max-width: 1140px;
+    min-height: 650px;
+   
 }
+
+.playlist {
+    font-family: 'Roboto';
+    padding: 5px;
+    margin-left: 20px;
+}
+
+.btn{
+    background-color: #354855;
+    color: aliceblue;
+    border-style: none;
+    font-family: 'Roboto';
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+
+  .footer {
+    position: sticky;
+    position: -webkit-sticky;
+    left: 0;
+    bottom: 0;
+  }

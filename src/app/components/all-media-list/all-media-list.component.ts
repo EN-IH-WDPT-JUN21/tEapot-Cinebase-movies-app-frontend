@@ -1,6 +1,6 @@
 import { Playlist } from '../../models/playlist.models';
 import { MediaService } from '../../service/media/media.service';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,13 +8,14 @@ import { Router } from '@angular/router';
   templateUrl: './all-media-list.component.html',
   styleUrls: ['./all-media-list.component.css']
 })
-export class AllMediaListComponent implements OnInit {
+export class AllMediaListComponent implements OnInit, AfterViewInit {
 
   playlistList: Playlist[] = [];
 
   constructor( 
     private router: Router,
-    private mediaService: MediaService
+    private mediaService: MediaService,
+    private elementRef: ElementRef
     ) { }
 
   ngOnInit(): void {
@@ -50,4 +51,9 @@ export class AllMediaListComponent implements OnInit {
   goToOwnedList(id: number){
     this.router.navigate(['/playlist', id]);
   }
+
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.ownerDocument
+        .body.style.backgroundImage = 'url("assets/img/screen_wide.png")';
+}
 }
