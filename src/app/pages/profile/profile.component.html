@@ -73,8 +73,23 @@
       <div class="about-text go-to">
         <h3 class="dark-color" style = "margin-left: 22px;">About Me</h3>
         <p class = "bio" *ngIf = "bio.length>0" style = "margin-left: 25px;">{{bio}} </p>
-        <div class="about-text go-to edit">
-                <i class="bi bi-pencil-fill" style="margin-left: 25px; font-size: 2rem; color: #354855; font-size: small; text-decoration-line:underline;">edit bio</i>
+        <div class="about-text go-to edit" style = "margin-bottom: 20px; ">
+                <button class = "edit-button" style = "background: none; border: none" (click)="buttonClicked()"><i class="bi bi-pencil-fill" style="margin-left: 25px; font-size: 2rem; 
+                color: #354855; font-size: small; text-decoration-line:underline; margin-right: 10px;" > edit bio</i></button>
+        </div>
+        <div class = "bio-input" *ngIf = "isClicked">
+        <form class="form-group"  (ngSubmit)="onSubmit()" #form="ngForm">
+            <textarea class="form-control" id="exampleFormControlTextarea3" rows="7" style="margin-left: 25px; font-family: 'Roboto';"></textarea>
+            <div><button class = "button-primary" type="submit" >Save</button></div> 
+        </form>
+    </div>
+    </div>
+    <div class="about-text go-to">
+        <h3 class="dark-color" style = "margin-left: 22px;">My Playlists</h3>
+        <p class = "bio" *ngIf = "bio.length>0" style = "margin-left: 25px;">{{bio}} </p>
+        <div class="about-text go-to edit" style = "margin-bottom: 20px; ">
+                <button class = "edit-button" style = "background: none; border: none" ><i class="bi bi-plus-circle-fill" style="margin-left: 25px; margin-right: 10px; font-size: 2rem; 
+                color: #354855; font-size: small; text-decoration-line:underline; " > add playlist</i></button>
         </div>
     </div>
       

@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import UserDetails from 'src/app/models/user-details.model';
 import { UserServiceService } from 'src/app/service/user-service/user-service.service';
 import { ImageService } from 'src/app/service/image-service/image-service.service';
+import { NgForm } from '@angular/forms';
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
 }
@@ -99,6 +100,20 @@ export class ProfileComponent implements OnInit {
         reader.readAsDataURL(file);
       }
 
+    //the section to deal with profile changes
+    @ViewChild('form')
+    form!: NgForm;
 
+    isClicked: boolean = false;
+
+     buttonClicked(){
+      this.isClicked = !this.isClicked;  
+     }
+
+     //placeholder for update bio function
+     onSubmit(){
+      this.form.reset();
+      this.isClicked = false;
+     }
 
     }
