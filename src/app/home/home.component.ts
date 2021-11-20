@@ -7,7 +7,14 @@ import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 })
 export class HomeComponent implements AfterViewInit {
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef) {
+    if(localStorage.getItem('profile')==null){
+      localStorage.setItem('profile', "");
+    }
+    if(localStorage.getItem('UserDetails')==null){
+      localStorage.setItem('UserDetails', "");
+    }
+  }
     ngAfterViewInit() {
         this.elementRef.nativeElement.ownerDocument
             .body.style.backgroundImage = 'url("assets/img/screen_wide.png")';
