@@ -1,6 +1,6 @@
 <ng-template #content let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <h4 class="modal-title" id="modal-basic-title" style = "font-family: 'Righteous'; color: #354855">How will you call your new playlist?</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -8,7 +8,7 @@
     <div class="modal-body">
       <form>
         <div class="form-group">
-          <label for="name">Playlist name</label>
+          <label for="name" style = "font-family: 'Roboto'; color: #354855">Playlist name</label>
           <div class="input-group">
             <input id="name" class="form-control" placeholder="name..." name="name" [(ngModel)]="name">
           </div>
@@ -20,4 +20,10 @@
     </div>
   </ng-template>
   
-  <button class="btn btn-secondary" (click)="open(content)">Add playlist</button>
+  <button class="btn btn-primary" (click)="open(content)"
+  style = "background-color: #354855;
+  color: aliceblue;
+  border-style: none;
+  font-family: 'Roboto';
+  margin-top: 40px;
+  margin-left: 20px;">Add playlist</button>

@@ -1,7 +1,36 @@
-.media {
-    width: 300px;
+.container{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    align-items: center;
 }
 
-div img {
+img {
     max-width: 100px;
+    margin-right: 50px;
 }
+
+.btn{
+    background-color: #553542;
+    color: aliceblue;
+    border-style: none;
+    font-family: 'Roboto';
+    max-height: 40px;
+    padding: 5px;
+    margin-left: auto;
+}
+
+  .footer {
+    position: sticky;
+    position: -webkit-sticky;
+    left: 0;
+    bottom: 0;
+  }
+
+  p{
+    font-family: 'Roboto';
+    font-size: 24px;
+    color: #354855;
+    margin-right: 40px;
+  }

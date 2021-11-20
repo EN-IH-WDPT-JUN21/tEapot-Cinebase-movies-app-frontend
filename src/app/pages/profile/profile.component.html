@@ -84,7 +84,7 @@
       <div class="about-text go-to">
         <h3 class="dark-color" style = "margin-left: 22px;">About Me</h3>
 
-        <p class = "bio"  style = "margin-left: 25px;">{{bio}} </p>
+        <p class = "bio"  style = "margin-left: 25px;" >{{bio}} </p>
 
         <div class="about-text go-to edit" style = "margin-bottom: 20px; ">
                 <button class = "edit-button" style = "background: none; border: none" (click)="buttonClicked()"><i class="bi bi-pencil-fill" style="margin-left: 25px; font-size: 2rem; 
@@ -100,16 +100,12 @@
     </div>
     </div>
     <div class="about-text go-to">
-        <h3 class="dark-color" style = "margin-left: 22px;">My Playlists</h3>
+        <a routerLink="/playlists"
+       class="nav-link"
+       routerLinkActive="router-link-exact-active"><h3 class="dark-color" 
+       style = "margin-left: 20px; text-decoration-line: underline; color: #354855;">GO TO My Playlists</h3></a>
 
-        <p class = "bio"  style = "margin-left: 25px;">playlists placeholder </p>
-
-        <div class="about-text go-to edit" style = "margin-bottom: 20px; ">
-                <button class = "edit-button" style = "background: none; border: none" ><i class="bi bi-plus-circle-fill" style="margin-left: 25px; margin-right: 10px; font-size: 2rem; 
-                color: #354855; font-size: small; text-decoration-line:underline; " > add playlist</i></button>
-        </div>
-    </div>
-      
+      </div>
 </section>
 
 </div>
