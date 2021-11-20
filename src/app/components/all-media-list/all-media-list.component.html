@@ -3,6 +3,6 @@
     <div class="playlist" *ngFor="let playlist of playlistList; let id = index" (click)="goToOwnedList(playlist.id)">
         {{playlist.name}}
         <br/>
-        <button class="btn btn-secondary" (click)="removePlaylist(id)">Remove playlist</button>
+        <button class="btn btn-secondary" (click)="removePlaylist(id);$event.stopPropagation()">Remove playlist</button>
     </div>
 </div>

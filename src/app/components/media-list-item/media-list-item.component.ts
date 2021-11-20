@@ -18,8 +18,6 @@ export class MediaListItemComponent implements OnInit {
 
   @Output() mediaRemoved: EventEmitter<number> = new EventEmitter();
 
-  @Output() mediaAdded: EventEmitter<number> = new EventEmitter();
-
   @Input()
   position!: number;
 
@@ -38,10 +36,6 @@ export class MediaListItemComponent implements OnInit {
 
   removeMedia(position: number): void {
     this.mediaRemoved.emit(position);
-  }
-
-  addMedia(position: number): void {
-    this.mediaAdded.emit(position);
   }
 
 }

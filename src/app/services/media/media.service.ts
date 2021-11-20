@@ -33,8 +33,10 @@ export class MediaService {
     this.http.patch<void>(`${this.baseUrl}/${id}`, media);
   }
 
-  deleteMovie(playlistId: number, imdbId: number): void {
-    this.http.delete<void>(`${this.baseUrl}/delete?playlistId=${playlistId}&imdbId=${imdbId}`);
+  deleteMovie(playlistId: number, imdbId: string): void {
+    console.log("Requesting delete of playlist " + playlistId + " and media " + imdbId);
+    console.log(`${this.baseUrl}?playlistId=${playlistId}&imdbId=${imdbId}`);
+    this.http.delete<void>(`${this.baseUrl}?playlistId=${playlistId}&imdbId=${imdbId}`);
   }
 
   deletePlaylist(id: number): void {

@@ -31,7 +31,7 @@ export class AllMediaListComponent implements OnInit {
 
   removePlaylist(playlistPosition: number): void {
     this.mediaService.deletePlaylist(this.playlistList[playlistPosition].id);
-    //this.playlistList.slice(playlistPosition, 1);
+    // this.playlistList.slice(playlistPosition, 1);
   }
 
   addPlaylist(userId: number, name: string): void {

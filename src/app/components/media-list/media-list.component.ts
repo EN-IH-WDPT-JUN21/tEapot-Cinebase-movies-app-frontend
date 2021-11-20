@@ -27,15 +27,7 @@ export class MediaListComponent implements OnInit {
   }
 
   removeMedia(mediaPosition: number): void {
-    this.playlist.movies.splice(mediaPosition, 1);
-  }
-
-  addMedia(movie: CompleteMedia) {
-    this.playlist.movies.push(
-      {
-        imdbId: movie.id,
-        title: movie.title
-      }
-    )
+    this.mediaService.deleteMovie(this.playlist.id, this.playlist.movies[mediaPosition].imdbId);
+    console.log(mediaPosition);
   }
 }
