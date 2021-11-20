@@ -25,7 +25,7 @@
   The project will have at least these sections:
   - A section to search movies (the search should be case insensitive)
   - A movie detail
-  - Login/Register section (only registred users can create playlists)
+  - Login/Register section (only registered users can create playlists)
   - User profile page (if logged)
   - User playlist section (if logged)
   
@@ -72,6 +72,8 @@
   Remarks
   ===========================
   When starting up playlist-service you may encounter JWT timeout error. In such case please start the application once again.
+  
+  It may also happen when running tests and, as such, they may fail with JWT timeout error. In that case please also rerun the tests.
   
   This application is using IMDB API which is restricted in number of requets per day. 
   
