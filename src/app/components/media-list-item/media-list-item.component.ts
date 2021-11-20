@@ -3,7 +3,6 @@ import { CompleteMedia } from './../../models/complete-media.models';
 import { SimplifiedMedia } from './../../models/simplified-media.models';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-media-list-item',
@@ -20,6 +19,9 @@ export class MediaListItemComponent implements OnInit {
   @Output() mediaRemoved: EventEmitter<number> = new EventEmitter();
 
   @Output() mediaAdded: EventEmitter<number> = new EventEmitter();
+
+  @Input()
+  position!: number;
 
   isLoaded: boolean = false;
 

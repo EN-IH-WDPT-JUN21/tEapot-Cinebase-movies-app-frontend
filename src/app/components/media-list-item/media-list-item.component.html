@@ -1,4 +1,5 @@
 <div *ngIf='media$ | async as media' class="container media">
     <p>{{media.title}}</p>
     <img src="{{media.image}}"/>
+    <button class="btn btn-secondary" (click)="removeMedia(position)">Remove</button>
 </div>

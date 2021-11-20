@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/publish';
 import 'rxjs/add/observable/of';
-import { share } from 'rxjs/operators';
 
 const mediaCacheObject: { [key: string]: CompleteMedia } = {};
 
@@ -17,7 +16,7 @@ export class MoviesService {
   // k_sg6g9gql
   // k_kf0sb0c0
 
-  private readonly apiKey='k_kf0sb0c0';
+  private readonly apiKey='k_sg6g9gql';
   private readonly baseUrl = 'https://imdb-api.com/en/API';
   
   constructor(private http: HttpClient) { }
