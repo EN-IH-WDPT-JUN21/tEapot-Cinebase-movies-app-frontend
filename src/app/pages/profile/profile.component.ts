@@ -1,6 +1,7 @@
+import { Playlist } from './../../models/playlist.models';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import UserDetails from 'src/app/models/user-details.model';
 import { UserServiceService } from 'src/app/service/user-service/user-service.service';
@@ -8,17 +9,17 @@ import { ImageService } from 'src/app/service/image-service/image-service.servic
 import { User } from '@auth0/auth0-spa-js';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
 }
-
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, AfterViewInit {
   @Input() src: any;
   @Input() bioInput: any;
   restoredSession: any;
@@ -32,10 +33,13 @@ export class ProfileComponent implements OnInit {
   userDetails: UserDetails;
   selectedFile!: ImageSnippet;
   imageId!: number;
+  isClicked: boolean;
 
   isImageLoading: boolean = false;
+  playlists: Array<Playlist>; // to be replaced with observable
   
-  constructor(public auth: AuthService, private userService: UserServiceService, private httpClient: HttpClient, private imageService: ImageService) {
+  constructor(public auth: AuthService, private userService: UserServiceService, private httpClient: HttpClient, 
+    private imageService: ImageService, private elementRef: ElementRef, private router: Router) {
     // this.id=localStorage.UserDetails.id;
     // this.username = localStorage.UserDetails.name;
     // this.email = localStorage.UserDetails.email;
@@ -45,6 +49,8 @@ export class ProfileComponent implements OnInit {
     // this.imageId=localStorage.UserDetails.imageId;
      this.userDetails= localStorage.UserDetails;
     // this.selectedFile = localStorage.UserDetails.image;
+    this.isClicked=false;
+    this.playlists = [];
   }
 
   ngOnInit(): void {
@@ -159,7 +165,6 @@ export class ProfileComponent implements OnInit {
     @ViewChild('form')
     form!: NgForm;
 
-    isClicked: boolean = false;
 
      buttonClicked(){
       this.isClicked = !this.isClicked;  
@@ -170,7 +175,7 @@ export class ProfileComponent implements OnInit {
       this.form.reset();
       this.isClicked = false;
      }
-
+     
 
 
 
@@ -203,4 +208,14 @@ export class ProfileComponent implements OnInit {
     this.userDetails.bio=bioInput.value;
     this.updateUserDetails(this.userDetails.email, this.userDetails);
   }
+
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.ownerDocument
+        .body.style.backgroundImage = 'url("assets/img/screen_wide.png")';
+}
+
+employeeDetails(id: number){
+  this.router.navigate(['playlist', id]);
+}
+
 }
