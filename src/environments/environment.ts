@@ -9,6 +9,7 @@ export const environment = {
   auth: {
     domain: packageInfo.domain,
     clientId: packageInfo.clientId,
+    // redirectUri: "http://localhost:4200/profile",
     redirectUri: window.location.origin,
     audience: packageInfo.audience,
     
