@@ -8,11 +8,12 @@
 
 <div class="container">
   <div class="col-sm-8">
-      
 
 <section id="about" *ngIf="auth.user$ | async as user" (onload)="getUserDetails(userDetails)" >
     <div class="name" >
         <h1>{{user.nickname| uppercase}}</h1>
+
+
     </div>
     
       <div class="row flex-row-reverse">
@@ -40,25 +41,32 @@
                   </div>
                   <div class="counter">
                     <div class="stats">
+                        <div class="col-6 col-lg-3 item-3">
+                            <div class="count-data text-center">
+                               <i class="bi bi-collection-play-fill" style="font-size: 4rem; color: #354855;"></i>
+                                <h6 class="count h2" data-to="850" data-speed="850">{{userStats.playlistsCount}}</h6>
+                                <p class="m-0px font-w-600">Playlists</p>
+                            </div>
+                        </div>
                         <div class="col-6 col-lg-3 item-1" style = "margin-right: 20px;">
                             <div class="count-data text-center">
                                 <i class="bi bi-camera-reels-fill" style="font-size: 4rem; color: #354855;"></i>
-                                <h6 class="count h2" data-to="500" data-speed="500">500</h6>
-                                <p class="m-0px font-w-600">Movies</p>
+                                <h6 class="count h2" data-to="500" data-speed="500">{{userStats.titlesCount}}</h6>
+                                <p class="m-0px font-w-600">Titles</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3 item-1" style = "margin-right: 20px;">
+                            <div class="count-data text-center">
+                                <i class="bi bi-file-earmark-break-fill" style="font-size: 4rem; color: #354855;"></i>
+                                <h6 class="count h2" data-to="500" data-speed="500">{{userStats.avgTitlesInPlaylist}}</h6>
+                                <p class="m-0px font-w-600">Average of titles in playlist</p>
                             </div>
                         </div>
                         <div class="col-6 col-lg-3 item-2" style = "margin-right: 20px;">
                             <div class="count-data text-center">
-                                <i class="bi bi-tv-fill" style="font-size: 4rem; color: #354855; align-self: baseline;"></i>
-                                <h6 class="count h2" data-to="150" data-speed="150">150</h6>
-                                <p class="m-0px font-w-600">Shows</p>
-                            </div>
-                        </div>
-                        <div class="col-6 col-lg-3 item-3">
-                            <div class="count-data text-center">
-                               <i class="bi bi-file-earmark-play-fill" style="font-size: 4rem; color: #354855;"></i>
-                                <h6 class="count h2" data-to="850" data-speed="850">850</h6>
-                                <p class="m-0px font-w-600">Playlists</p>
+                                <i class="bi bi-file-earmark-play-fill" style="font-size: 4rem; color: #354855; align-self: baseline;"></i>
+                                <h6 class="count h2" data-to="150" data-speed="150">{{userStats.maxTitlesInPlaylist}}</h6>
+                                <p class="m-0px font-w-600">Highest number of titles in playlist</p>
                             </div>
                         </div>
                     </div>

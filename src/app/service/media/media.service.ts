@@ -25,8 +25,8 @@ export class MediaService {
     return this.http.get<Playlist[]>(`${this.baseUrl}?email=${email}`);
   }
 
-  createPlaylist(playlist: Playlist): void {
-    this.http.post<void>(`${this.baseUrl}`, playlist).subscribe();
+  createPlaylist(playlist: Playlist, email: string): Observable<Playlist[]> {
+    return this.http.post<Playlist[]>(`${this.baseUrl}/${email}`, playlist);
   }
 
   updatePlaylist(id: number, media: SimplifiedMedia): void {
@@ -39,7 +39,7 @@ export class MediaService {
     return this.http.delete<Playlist>(`${this.baseUrl}?playlistId=${playlistId}&imdbId=${imdbId}`);
   }
 
-  deletePlaylist(id: number): Observable<Playlist[]> {
-    return this.http.delete<Playlist[]>(`${this.baseUrl}/${id}`);
+  deletePlaylist(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 }

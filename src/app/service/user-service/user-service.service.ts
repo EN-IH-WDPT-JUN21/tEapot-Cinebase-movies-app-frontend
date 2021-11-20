@@ -21,6 +21,10 @@ export class UserServiceService {
     getUserDetails(email:string) : Observable<any> {
       return this.http.get<any>(this.baseURL + '/users/'+email);
     }
+
+    getUserStats(email:string) : Observable<any> {
+      return this.http.get<any>(this.baseURL + '/users/'+email+'/stats');
+    }
     postUserDetails(userDetails: UserDetails) : Observable<any> {
 
       return this.http.post<any>(this.baseURL + '/users', userDetails);
