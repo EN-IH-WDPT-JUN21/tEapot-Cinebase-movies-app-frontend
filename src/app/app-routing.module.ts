@@ -30,17 +30,17 @@ const routes: Routes = [
     path: 'playlists',
     component: AllMediaListComponent
   },
+
   {
     path: 'playlist/:playlistId',
     component: MediaListComponent
-  },
+
+  },  
   {
 
     path: '**',
     component: PageNotFoundComponent,
    },
-
- 
   
 
 ];

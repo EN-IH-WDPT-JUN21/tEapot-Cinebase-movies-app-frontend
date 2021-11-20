@@ -8,7 +8,7 @@
   <div class="col-sm-8">
       
 
-<section id="about" *ngIf="auth.user$ | async as user" (onload)="getUserDetails(email)" >
+<section id="about" *ngIf="auth.user$ | async as user" (onload)="getUserDetails(userDetails)" >
     <div class="name" >
         <h1>{{user.name| uppercase}}</h1>
     </div>
@@ -64,9 +64,9 @@
           </div>
           <div class="col-lg-6">
               <div class="about-avatar">
-                  <img [src]="url ? img : '../../../assets/img/groot.png'" title="" alt="">
+                  <img [src]="img ? img : '../../../assets/img/groot.png'" title="" alt="">    
+                  <input #imageInput type='file' accept="image/*" (change)="processFile(imageInput, userDetails.email)" class="select-profile-picture">
                   <span class="message">Tap here to select your picture</span>
-                  <input #imageInput type='file' accept="image/*" (change)="onSelectFile(imageInput)" class="select-profile-picture">
               </div>
           </div>
       </div>
@@ -101,5 +101,10 @@
 <div class = "footer">
   <app-footer></app-footer>
 </div>
+
+<div class = "footer">
+  <app-footer></app-footer>
+  </div>
+
 
 

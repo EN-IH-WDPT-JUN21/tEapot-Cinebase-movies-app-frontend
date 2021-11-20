@@ -12,11 +12,12 @@ export class ImageService{
   readonly baseURL:string = "http://localhost:8000/api/users/"; 
 
   public uploadImage(image: File, email: string): Observable<any> {
-    const formData = new FormData();
-    
-    formData.append('image', image);
+    const multipartImage = new FormData();  
+    multipartImage.append('multipartImage', image);
+    return this.http.post(this.baseURL +email+"/image", multipartImage);
+  }
 
-    var json=JSON.stringify(formData);
-    return this.http.post(this.baseURL +email+"/image", json);
+  getImage(imageId: number): Observable<Blob> {
+    return this.http.get(this.baseURL +"image/"+imageId, { responseType: 'blob' });
   }
 }

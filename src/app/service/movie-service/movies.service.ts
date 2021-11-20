@@ -34,6 +34,4 @@ export class MoviesService {
   getMovieById(id:string) : Observable<any> {
     return this.http.get<any>(this.baseUrl+ '/Title/' + this.apiKey + '/' + id)
   } 
-
-
 }
