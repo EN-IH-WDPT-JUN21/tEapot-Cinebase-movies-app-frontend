@@ -26,6 +26,8 @@ export class MediaService {
   }
 
   createPlaylist(playlist: Playlist, email: string): Observable<Playlist[]> {
+    console.log("Create playlist");
+    console.log(playlist);
     return this.http.post<Playlist[]>(`${this.baseUrl}/${email}`, playlist);
   }
 
@@ -34,8 +36,6 @@ export class MediaService {
   }
 
   deleteMovie(playlistId: number, imdbId: string): Observable<Playlist> {
-    console.log("Requesting delete of playlist " + playlistId + " and media " + imdbId);
-    console.log(`${this.baseUrl}?playlistId=${playlistId}&imdbId=${imdbId}`);
     return this.http.delete<Playlist>(`${this.baseUrl}?playlistId=${playlistId}&imdbId=${imdbId}`);
   }
 

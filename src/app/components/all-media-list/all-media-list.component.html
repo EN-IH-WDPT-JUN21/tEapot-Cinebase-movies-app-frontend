@@ -1,9 +1,9 @@
 
 <div class="container" *ngIf='playlistList$ | async as playlistList'>
     <h1>My Playlists</h1>
-    <div class="playlist" *ngFor="let playlist of playlistList; let id = index" (click)="goToOwnedList(playlist.id)">
+    <div class="playlist" *ngFor="let playlist of playlistList" (click)="goToOwnedList(playlist.id)">
         {{playlist.name}}
-        <button class="btn remove" (click)="removePlaylist(id);$event.stopPropagation()">Remove</button>
+        <button class="btn remove" (click)="removePlaylist(playlist.id);$event.stopPropagation()">Remove</button>
         <hr class="solid">
     </div>
     <app-add-playlist (playlistAdded)="addPlaylist($event)"></app-add-playlist>
