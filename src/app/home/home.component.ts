@@ -9,7 +9,12 @@ export class HomeComponent implements AfterViewInit {
 
   constructor(private elementRef: ElementRef) {
     if(localStorage.getItem('profile')==null){
-      localStorage.setItem('profile', "");
+            localStorage.setItem('profile', 
+               JSON.stringify({
+                'nickname': '',
+                'name': '',
+                'email': ''}
+                ));
     }
     if(localStorage.getItem('UserDetails')==null){
       localStorage.setItem('UserDetails', "");
