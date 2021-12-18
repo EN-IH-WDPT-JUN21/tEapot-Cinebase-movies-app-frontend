@@ -2,10 +2,7 @@ import { CompleteMedia, iCompleteMedia } from './../../models/complete-media.mod
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/publish';
-import 'rxjs/add/observable/of';
-
+import { of } from 'rxjs' 
 const mediaCacheObject: { [key: string]: CompleteMedia } = {};
 
 @Injectable({
@@ -48,14 +45,14 @@ export class MoviesService {
       return observableMedia;
     }
     console.log(mediaCacheObject[id]);
-    return Observable.of(mediaCacheObject[id]);
+    return of(mediaCacheObject[id]);
   }
   fetchMediaById(id: string): Observable<any> {
     console.log(`fetch media: ${id}`);
     return this.http.get<iCompleteMedia>(this.baseUrl+ '/Title/' + this.apiKey + '/' + id)
-    .map((rawData: iCompleteMedia) => this.mapCompleteMedia(rawData))
-    .publish()
-    .refCount();
+    // .map((rawData: iCompleteMedia) => this.mapCompleteMedia(rawData))
+    // .publish()
+    // .refCount();
   }
   private mapCompleteMedia(body: iCompleteMedia) {
     return new CompleteMedia(body);
